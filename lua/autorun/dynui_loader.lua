@@ -1,5 +1,5 @@
 local folders = {
-    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua"},
+    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua", "switch.lua"},
     ["tests"] = {"init.lua"},
 }
 
@@ -12,6 +12,8 @@ if CLIENT then
     DynUI:AddFont("Title",23)
     DynUI:AddFont("Sidebar",20)
     DynUI:AddFont("Button",17, 100)
+else
+    resource.AddFile("sound/dynui/toggle_click.wav")
 end
 
 

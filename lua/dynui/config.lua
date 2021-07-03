@@ -7,6 +7,14 @@ DynUI = {
     ["Sidebar"] = {
         ["Primary"] = Color(56,59,61),
         ["Indicator"] = Color(37,146,219)
+    },
+    ["Switch"] = { 
+        ["Enabled"] = Color(25,202,49),
+        ["Disabled"] = Color(233,84,84)
+    },
+
+    ["Sounds"] = {
+        ["Switch"] = Sound("dynui/toggle_click.wav")
     }
 }
 

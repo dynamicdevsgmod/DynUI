@@ -3,8 +3,6 @@ local mats = {
 }
 
 local function openmenu()
-
-
     local frame = vgui.Create("DynFrame")
 
     frame:SetSize( ScrW() * .9, ScrH() * .9 )
@@ -49,6 +47,9 @@ local function openmenu()
     btn4:SetColor(primary)
     btn4:SetTextColor(color_black)
     btn4:SetDText("THE SECRET UBER COOL BUTTON")
+
+    local switch = sidebar.Tabs["Test"]:Add("DynSwitch")
+    switch:Center()
 end
 
 concommand.Add("dynui", openmenu)
