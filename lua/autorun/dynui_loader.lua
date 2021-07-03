@@ -1,4 +1,4 @@
-local folders = {
+local folders = { 
     ["elements"] = {"frame.lua", "sidebar.lua", "button.lua"},
     ["tests"] = {"init.lua"},
 }
