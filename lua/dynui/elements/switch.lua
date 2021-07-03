@@ -19,11 +19,11 @@ function PANEL:OnMousePressed( key )
     if key != MOUSE_LEFT then return end
 
     if self.Toggle then
-        self.Button:MoveTo(0, 0, .5, 0, .5, function()
+        self.Button:MoveTo(0, 0, .4, 0, .5, function()
             self.Toggling = false
         end )
     else
-        self.Button:MoveTo(self:GetWide() - self.Button:GetWide(), 0, .5, 0, .5, function()
+        self.Button:MoveTo(self:GetWide() - self.Button:GetWide(), 0, .4, 0, .5, function()
             self.Toggling = false
         end)
     end
