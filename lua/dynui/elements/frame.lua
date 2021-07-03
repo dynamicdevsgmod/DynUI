@@ -6,19 +6,19 @@ function PANEL:Init()
 end
 
 function PANEL:DoHeader()
-    self.Header = true
-    local header = self:Add("DPanel")
-    header:Dock(TOP)
-    header:SetTall(30)
-    header.Paint = function(me,w,h)
+    self.Header = self:Add("DPanel")
+    self.Header:Dock(TOP)
+    self.Header:SetTall(30)
+    self.Header:SetCursor("sizeall")
+    self.Header.Paint = function(me,w,h)
         draw.RoundedBoxEx(4, 0, 0, w, h, DynUI.Header, true, true, false, false)
         draw.SimpleText(self.Title or "Window", "DynUI_Title", self:GetWide() * .5, me:GetTall() * .5 , DynUI.Title, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     self.ResetHeight = self:GetTall()
-    self.MinHeight = header:GetTall()
+    self.MinHeight = self.Header:GetTall()
     
-    local close = header:Add("DButton")
+    local close = self.Header:Add("DButton")
     close:Dock(RIGHT)
     close:SetWide(30)
     close:SetText("")
@@ -36,7 +36,7 @@ function PANEL:DoHeader()
         self:Remove()
     end
 
-    local minimize = header:Add("DButton")
+    local minimize = self.Header:Add("DButton")
     minimize:SetDisabled(true)
     minimize:Dock(RIGHT)
     minimize:SetWide(30)
