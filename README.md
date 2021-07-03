@@ -40,3 +40,12 @@ Sets the background color, the shadow is automatically generated.
 Self explanatory.  Useful if you have a dark button color.
 ### String SetDText(text)
 Sets the title of the button. **Make sure you add the "D", I have that there so that I don't mess with the default label behavior.**
+
+## DynSwitch
+### Details
+A toggleable switch.
+
+### Methods
+#### Boolean DoToggle(boolean)
+Determines whether or not to start the switch toggled. Not required. If no arguments are passed (or the argument is falsy) it will simply return whether or not
+the switch is toggled, like a "Get" function.
