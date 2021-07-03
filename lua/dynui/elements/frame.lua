@@ -66,6 +66,11 @@ function PANEL:DoHeader()
 
 end
 
+function PANEL:SetBlur(blur)
+    if not blur then return self.Blur end
+    self.Blur = blur
+end
+
 function PANEL:SetTitle(title)
     if not self.Header then return end
     
@@ -73,6 +78,9 @@ function PANEL:SetTitle(title)
 end
 
 function PANEL:Paint(w,h)
+    if self.Blur then
+        Derma_DrawBackgroundBlur(self)
+    end
     draw.RoundedBox( 4, 0, 0, w, h, DynUI.Primary )
 end
 

@@ -1,6 +1,7 @@
 DynUI = {
     ["Primary"] = Color(48,50,54),
     ["Header"] = Color(33,36,41),
+    ["Neutral"] = Color(114,114,114),
     ["Title"] = color_white,
     ["Close"] = Color(197,64,64),
     ["Minimize"] = Color(224,174,38),
@@ -59,6 +60,58 @@ if CLIENT then
         tt:SetMouseInputEnabled(false)
         if width and width > 100 then
             tt:SetWide(width) 
+        end
+    end
+
+    function DynUI:ConfirmAction(text, callback)
+        local frame = vgui.Create("DynFrame")
+        frame:SetBlur(true)
+        frame:SetSize(ScrW() * .35,  ScrH() * .3)
+        frame:Center()
+        frame:MakePopup()
+        frame:DoModal()
+
+        local title = frame:Add("DLabel")
+        title:SetText("Are You Sure?")
+        title:SetFont("DynUI_Title")
+        title:SizeToContents()
+        title:CenterHorizontal()
+        title:SetY(20)
+
+        local message = frame:Add("DLabel")
+        message:SetText("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sapiente consequatur labore repellat saepe accusamus molestiae. Excepturi officiis sit quibusdam, laboriosam perspiciatis ipsa similique voluptates vel quaerat dolores tenetur sapiente, mollitia obcaecati laudantium et! At mollitia expedita veniam asperiores veritatis architecto omnis doloribus delectus sit consectetur? Minima sint perferendis suscipit?")
+        message:SetFont("DynUI_Sidebar")
+        message:SetWide(frame:GetWide() * .8)
+        message:CenterHorizontal()
+        -- message:
+
+        local buttons_container = frame:Add("DPanel")
+        buttons_container:SetBackgroundColor(color_transparent)
+        buttons_container:SetSize(frame:GetWide() * .8, 30)
+        buttons_container:SetY(frame:GetTall() - (buttons_container:GetTall() + 4))
+        buttons_container:CenterHorizontal()
+
+        local confirm = buttons_container:Add("DynButton")
+        confirm:Dock(LEFT)
+        confirm:SetSize(200, 30)
+        confirm:SetTextColor(color_black)
+        confirm:SetColor(DynUI.Close)
+        confirm:SetDText("Confirm Action")
+        function confirm:DoClick()
+            if callback then
+                callback()
+            end
+            frame:Remove()
+        end
+
+        local cancel = buttons_container:Add("DynButton")
+        cancel:Dock(RIGHT)
+        cancel:SetSize(200, 30)
+        cancel:SetTextColor(color_black)
+        cancel:SetColor(DynUI.Neutral)
+        cancel:SetDText("Cancel")
+        function cancel:DoClick()
+            frame:Remove()
         end
     end
 end

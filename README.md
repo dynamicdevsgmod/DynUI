@@ -7,6 +7,8 @@ They also have some unique cases that you'll have to pay attention to when using
 ### Methods
 #### void `DoHeader()`
 Whether or not to draw the header.
+#### boolean `SetBlur(blur)`
+Blur: Whether or not to blur the background behind the frame. Leave empty or falsy to return current blur value.
 
 ## DynSidebar
 ### Details
