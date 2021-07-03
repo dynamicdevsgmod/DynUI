@@ -1,5 +1,4 @@
 local PANEL = {}
-AccessorFunc(PANEL, "tgl_header", "Header", FORCE_BOOL)
 
 function PANEL:Init()
     self.Minimized = false
@@ -54,11 +53,15 @@ function PANEL:DoHeader()
     minimize.DoClick = function(me)
         if not self.Minimized then
             self:SetTall(self.MinHeight)
-        else
-            self:SetTall(self.ResetHeight)
-        end
+            self:KillFocus()
+			self:SetMouseInputEnabled(false)
+			self:SetKeyboardInputEnabled(false)
+			self:SetAlpha(200)
 
-        self.Minimized = not self.Minimized
+			gui.HideGameUI()
+
+            self.Minimized = true
+        end
     end
 
 end

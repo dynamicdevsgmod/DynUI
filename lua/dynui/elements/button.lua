@@ -1,7 +1,4 @@
 local PANEL = {}
-AccessorFunc(PANEL, "Color", "Color")
-AccessorFunc(PANEL, "TextColor", "TextColor")
-AccessorFunc(PANEL, "DText", "DText")
 
 function PANEL:Init()
     self.H = self:GetTall()
