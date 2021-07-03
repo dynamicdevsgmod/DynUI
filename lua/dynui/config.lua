@@ -12,7 +12,7 @@ DynUI = {
         ["Enabled"] = Color(25,202,49),
         ["Disabled"] = Color(233,84,84)
     },
-
+    ["Tooltip"] = Color(0,0,0,234),
     ["Sounds"] = {
         ["Switch"] = Sound("dynui/toggle_click.wav")
     }
@@ -49,5 +49,16 @@ if CLIENT then
         hovCol.g = color.g - 30
         hovCol.b = color.b - 30
         return hovCol
+    end
+
+    function DynUI:MakeTooltip(mainparent, parent, message, width)
+        local tt = vgui.Create("DynTooltip")
+        tt:SetTTParent(parent)
+        tt:SetParent(mainparent)
+        tt:SetTTText(message)
+        tt:SetMouseInputEnabled(false)
+        if width and width > 100 then
+            tt:SetWide(width) 
+        end
     end
 end

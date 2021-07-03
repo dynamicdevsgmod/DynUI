@@ -40,6 +40,7 @@ local function openmenu()
     btn3:SetColor(primary)
     btn3:SetTextColor(color_black)
     btn3:SetDText("Coolest Button :)")
+    DynUI:MakeTooltip(sidebar.Tabs["Test"], btn3, "OH MY GOD IS THAT AMONG US", 220)
 
     local btn4 = sidebar.Tabs["A Second Test"]:Add("DynButton")
     btn4:SetSize(400, 40)
@@ -50,6 +51,7 @@ local function openmenu()
 
     local switch = sidebar.Tabs["Test"]:Add("DynSwitch")
     switch:Center()
+    DynUI:MakeTooltip(sidebar.Tabs["Test"], switch, "Sussy Baka")
 end
 
 concommand.Add("dynui", openmenu)
