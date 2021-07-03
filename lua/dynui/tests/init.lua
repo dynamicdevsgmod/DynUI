@@ -44,7 +44,7 @@ local function openmenu()
     btn3:SetDText("Coolest Button :)")
 
     local btn4 = sidebar.Tabs["A Second Test"]:Add("DynButton")
-    btn4:SetSize(400, 50)
+    btn4:SetSize(400, 40)
     btn4:Center()
     btn4:SetColor(primary)
     btn4:SetTextColor(color_black)
