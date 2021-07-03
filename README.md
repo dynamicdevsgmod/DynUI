@@ -25,8 +25,8 @@ btn:Center()
 ```
 ### Methods
 #### void AddTab(name, material, first)
-Name: Name of the tab to reference by as well as what shows up in the menu.
-Material: Material for the icon using the Material() function. Can not be nil.
+Name: Name of the tab to reference by as well as what shows up in the menu.<br>
+Material: Material for the icon using the Material() function. Can not be nil.<br>
 First: Whether or not this is the tab you want to be already active when the menu first opens. **DO NOT SET THIS TO TRUE ON MULTIPLE TABS**
 
 ## DynButton
