@@ -31,9 +31,12 @@ function PANEL:OnMousePressed( key )
     self.Toggle = not self.Toggle
 end
 
-function PANEL:Toggle(bool)
+function PANEL:DoToggle(bool)
+    if not bool then return self.Toggle end
+
     if type(bool) != "boolean" then error("Wrong type passed to DynSwitch:Toggle()") end
     self.Toggle = bool
+    self.Button:SetPos(self:GetWide() - self.Button:GetWide(), 0)
 end
 
 function PANEL:Paint(w,h)
