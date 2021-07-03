@@ -1,7 +1,5 @@
 local mats = {
-    ["SCP682"] = Material("fv_addons/682_leftmouse.png"),
-    ["mask"] = Material("fv_addons/682_key.png"),
-    ["rmb"] = Material("fv_addons/682_rightmouse.png")
+    ["SCP682"] = Material("fv_addons/682_leftmouse.png")
 }
 
 local function openmenu()
@@ -16,24 +14,41 @@ local function openmenu()
     frame:SetTitle("Dynamic Jobs")
 
     local sidebar = frame:Add("DynSidebar")
-    sidebar:AddTab("Home", mats.SCP682, true)
-    sidebar:AddTab("SCP-682", mats.mask)
-    sidebar:AddTab("Right Click", mats.rmb)
+    sidebar:AddTab("Test", mats.SCP682, true)
+    sidebar:AddTab("A Second Test", mats.SCP682)
 
-    local btn = sidebar.Tabs["Home"]:Add("DButton")
-    btn:SetText("Click Me For Gay")
-    btn:Center()
-    btn:SizeToContents()
+    local btn = sidebar.Tabs["Test"]:Add("DynButton")
+    btn:SetSize(200, 30)
+    btn:CenterHorizontal()
+    btn:SetY(100)
+    btn:SetTextColor(color_black)
+    btn:SetColor(DynUI.Close)
+    btn:SetDText("Cool Button :)")
 
-    local btn2 = sidebar.Tabs["SCP-682"]:Add("DButton")
-    btn2:SetText("Click Me For Money")
-    btn2:Center()
-    btn2:SizeToContents()
+    local btn2 = sidebar.Tabs["Test"]:Add("DynButton")
+    local success = Color(26,230,60)
+    btn2:SetSize(200, 30)
+    btn2:CenterHorizontal()
+    btn2:SetY(150)
+    btn2:SetColor(success)
+    btn2:SetTextColor(color_black)
+    btn2:SetDText("Cooler Button :)")
 
-    local btn3 = sidebar.Tabs["Right Click"]:Add("DButton")
-    btn3:SetText("Click Me For Death")
-    btn3:Center()
-    btn3:SizeToContents() 
+    local btn3 = sidebar.Tabs["Test"]:Add("DynButton")
+    local primary = Color(26,121,230)
+    btn3:SetSize(200, 30)
+    btn3:CenterHorizontal()
+    btn3:SetY(200)
+    btn3:SetColor(primary)
+    btn3:SetTextColor(color_black)
+    btn3:SetDText("Coolest Button :)")
+
+    local btn4 = sidebar.Tabs["A Second Test"]:Add("DynButton")
+    btn4:SetSize(400, 50)
+    btn4:Center()
+    btn4:SetColor(primary)
+    btn4:SetTextColor(color_black)
+    btn4:SetDText("THE SECRET UBER COOL BUTTON")
 end
 
 concommand.Add("dynui", openmenu)

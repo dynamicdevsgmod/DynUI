@@ -1,5 +1,5 @@
 local folders = {
-    ["elements"] = {"frame.lua", "sidebar.lua"},
+    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua"},
     ["tests"] = {"init.lua"},
 }
 
@@ -11,6 +11,7 @@ include(dir.."/config.lua")
 if CLIENT then
     DynUI:AddFont("Title",23)
     DynUI:AddFont("Sidebar",20)
+    DynUI:AddFont("Button",17, 100)
 end
 
 

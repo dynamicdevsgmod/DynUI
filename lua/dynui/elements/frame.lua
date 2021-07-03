@@ -30,7 +30,7 @@ function PANEL:DoHeader()
             surface.SetDrawColor(hov_close)
         end
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 9, 120 )
+        DynUI:DrawCircle( w * .5, h * .5, 8, 120 )
     end
     close.DoClick = function(me)
         self:Remove()
@@ -49,7 +49,7 @@ function PANEL:DoHeader()
             surface.SetDrawColor(hov_min)
         end
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 9, 120 )
+        DynUI:DrawCircle( w * .5, h * .5, 8, 120 )
     end
     minimize.DoClick = function(me)
         if not self.Minimized then
