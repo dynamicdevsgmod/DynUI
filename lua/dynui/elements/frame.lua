@@ -84,4 +84,4 @@ function PANEL:Paint(w,h)
     draw.RoundedBox( 4, 0, 0, w, h, DynUI.Primary )
 end
 
-derma.DefineControl("DynFrame", "Dynamic VGUI Frame", PANEL, EditablePanel)
+derma.DefineControl("DynFrame", "Dynamic VGUI Frame", PANEL, "EditablePanel")

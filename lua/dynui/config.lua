@@ -16,6 +16,10 @@ DynUI = {
     ["Tooltip"] = Color(0,0,0,234),
     ["Sounds"] = {
         ["Switch"] = Sound("dynui/toggle_click.wav")
+    },
+    ["Buttons"] = {
+        ["Primary"] = Color(26,121,230),
+        ["Success"] = Color(26,230,60)
     }
 }
 
@@ -124,6 +128,7 @@ if CLIENT then
         frame:SetContentAlignment(5)
         frame:MakePopup()
         frame:Center()
+        frame:DoModal()
 
         -- Buttons sizing
         btns_cont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
