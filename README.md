@@ -64,4 +64,14 @@ Element: The element that we want the tooltip to appear on when we hover. <br>
 Message: The message that you want to appear when the tooltip is activated. <br>
 Width (optional*): Sets the width of the tooltip. *If the message takes up more than 100 pixels of width, you need to set this to accomadate for the extra space. <br>
 **Note: Does NOT support multiple lines or super fucking long messages, use a notification or something if you need to say something
-big.** 
+big.**
+
+## Confirmation prompts (Derma_Query() clone)
+### Details
+Similar to derma query, creates a new "confirmation prompt" with customizable text that accepts callbacks when confirmed.
+### Methods
+#### Panel DynUI:ConfirmAction(ttl, text, callback)
+ttl: The title at the top of the frame, if nil the text will default to "Are You Sure?" <br>
+text: The text in the center of the frame, make this concise yet clear. If nil the text will default to "Please confirm this action." <br>
+callback: The callback for when the "Confirm Action" button is clicked.<br><br>
+Returns the frame that the prompt is held within.

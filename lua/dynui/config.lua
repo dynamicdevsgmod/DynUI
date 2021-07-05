@@ -132,5 +132,7 @@ if CLIENT then
         -- Text centering
         title:CenterHorizontal()
         message:CenterHorizontal()
+
+        return frame
     end
 end
