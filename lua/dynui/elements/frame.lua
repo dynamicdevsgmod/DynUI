@@ -13,6 +13,26 @@ function PANEL:DoHeader()
         draw.RoundedBoxEx(4, 0, 0, w, h, DynUI.Header, true, true, false, false)
         draw.SimpleText(self.Title or "Window", "DynUI_Title", self:GetWide() * .5, me:GetTall() * .5 , DynUI.Title, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
+    self.Header.OnMousePressed = function(me,kc)
+        if kc != MOUSE_LEFT then return end
+        if self.Header:IsChildHovered() then return end
+        self.Dragging = true
+        self:MouseCapture(true)
+    end
+    self.Header.OnMouseReleased = function(me,kc)
+        self.Dragging = nil
+        self:MouseCapture(false)
+    end
+    self.Header.Think = function(me)
+        if not self.Dragging then return end
+        if not input.IsMouseDown(MOUSE_LEFT) then self:MouseCapture(false) self.Dragging = nil return end
+    
+        local x,y = gui.MouseX() - self:GetWide() * .5 , gui.MouseY() - self.Header:GetTall() * .5
+
+        if x > ScrW() - self:GetWide() - 5 then x = ScrW() - self:GetWide() end
+        if y < -5 then y = 0 end
+        self:SetPos(x,y)
+    end
 
     self.ResetHeight = self:GetTall()
     self.MinHeight = self.Header:GetTall()
