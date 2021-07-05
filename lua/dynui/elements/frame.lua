@@ -23,7 +23,7 @@ function PANEL:DoHeader()
         self.Dragging = nil
         self:MouseCapture(false)
     end
-    self.Header.Think = function(me)
+    self.Header.Think = function(me) -- TODO make it not snap cursor to center of panel
         if not self.Dragging then return end
         if not input.IsMouseDown(MOUSE_LEFT) then self:MouseCapture(false) self.Dragging = nil return end
     
