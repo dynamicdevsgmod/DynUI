@@ -18,20 +18,19 @@ function PANEL:DoHeader()
         if self.Header:IsChildHovered() then return end
         self.Dragging = true
         self:MouseCapture(true)
+        self.Header.MouseX,self.Header.MouseY = self.Header:CursorPos()
     end
     self.Header.OnMouseReleased = function(me,kc)
         self.Dragging = nil
         self:MouseCapture(false)
+        self.Header.MouseX,self.Header.MouseY = nil
     end
-    self.Header.Think = function(me) -- TODO make it not snap cursor to center of panel
+    self.Header.Think = function(me)
         if not self.Dragging then return end
         if not input.IsMouseDown(MOUSE_LEFT) then self:MouseCapture(false) self.Dragging = nil return end
     
-        local x,y = gui.MouseX() - self:GetWide() * .5 , gui.MouseY() - self.Header:GetTall() * .5
-
-        if x > ScrW() - self:GetWide() - 5 then x = ScrW() - self:GetWide() end
-        if y < -5 then y = 0 end
-        self:SetPos(x,y)
+        local x,y = gui.MouseX(), gui.MouseY() - self.Header.MouseY
+        self:SetPos(x - self.Header.MouseX,y)
     end
 
     self.ResetHeight = self:GetTall()
