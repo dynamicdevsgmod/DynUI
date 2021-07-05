@@ -70,8 +70,10 @@ big.**
 ### Details
 Similar to derma query, creates a new "confirmation prompt" with customizable text that accepts callbacks when confirmed.
 ### Methods
-#### Panel DynUI:ConfirmAction(ttl, text, callback)
+#### Panel DynUI:ConfirmAction(ttl, text, callback, closecallback)
 ttl: The title at the top of the frame, if nil the text will default to "Are You Sure?" <br>
 text: The text in the center of the frame, make this concise yet clear. If nil the text will default to "Please confirm this action." <br>
-callback: The callback for when the "Confirm Action" button is clicked.<br><br>
+callback: The callback for when the "Confirm Action" button is clicked.<br>
+closecallback: Same thing as above but for when the "cancel" button is clicked. Both of these options aren't required but it
+s pointless not to have at least one of them.<br><br>
 Returns the frame that the prompt is held within.

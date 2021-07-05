@@ -63,7 +63,7 @@ if CLIENT then
         end
     end
 
-    function DynUI:ConfirmAction(ttl, text, callback)
+    function DynUI:ConfirmAction(ttl, text, callback, closecallback)
         local frame = vgui.Create("DynFrame")
         frame:SetBlur( true )
         frame:SetDrawOnTop( true )
@@ -100,8 +100,8 @@ if CLIENT then
         confirm:SetColor(DynUI.Close)
         confirm:Dock(LEFT)
         function confirm:DoClick()
-            if callback then callback() end
             frame:Remove()
+            if callback then callback() end
         end
 
         local close = btns_cont:Add("DynButton")
@@ -110,6 +110,7 @@ if CLIENT then
         close:Dock(RIGHT)
         function close:DoClick()
             frame:Remove()
+            if closecallback then closecallback() end
         end
 
 
