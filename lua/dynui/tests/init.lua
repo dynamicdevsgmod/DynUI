@@ -22,7 +22,7 @@ local function openmenu()
     btn:SetColor(DynUI.Close)
     btn:SetDText("Delete Something Important")
     function btn:DoClick()
-        DynUI:ConfirmAction("You are not going to be able to recover the item you deleted! Seriously, you won't!")
+        DynUI:ConfirmAction(nil, "This action is irreversible.")
     end
 
     local btn2 = sidebar.Tabs["Farming"]:Add("DynButton")
@@ -53,7 +53,7 @@ local function openmenu()
 
     local switch = sidebar.Tabs["Farming"]:Add("DynSwitch")
     switch:Center()
-    DynUI:MakeTooltip(sidebar.Tabs["Farming"], switch, "Sussy Baka")
+    DynUI:MakeTooltip(sidebar.Tabs["Farming"], switch, "I'm A Tooltip")
 end
 
 concommand.Add("dynui", openmenu)

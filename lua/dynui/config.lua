@@ -63,55 +63,74 @@ if CLIENT then
         end
     end
 
-    function DynUI:ConfirmAction(text, callback)
+    function DynUI:ConfirmAction(ttl, text, callback)
         local frame = vgui.Create("DynFrame")
-        frame:SetBlur(true)
-        frame:SetSize(ScrW() * .35,  ScrH() * .3)
-        frame:Center()
-        frame:MakePopup()
-        frame:DoModal()
+        frame:SetBlur( true )
+        frame:SetDrawOnTop( true )
+        function frame:OnKeyCodePressed(key) -- TODO Remove
+            if key == KEY_ENTER then
+                self:Remove()
+            end
+        end
 
         local title = frame:Add("DLabel")
-        title:SetText("Are You Sure?")
-        title:SetFont("DynUI_Title")
+        title:SetText(ttl or "Are You Sure?")
+        title:SetFont("DynUI_Query_Title")
         title:SizeToContents()
-        title:CenterHorizontal()
-        title:SetY(20)
+        title:SetContentAlignment(5)
+        title:SetY(10)
+        title:SetColor(color_white)
 
         local message = frame:Add("DLabel")
-        message:SetText("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sapiente consequatur labore repellat saepe accusamus molestiae. Excepturi officiis sit quibusdam, laboriosam perspiciatis ipsa similique voluptates vel quaerat dolores tenetur sapiente, mollitia obcaecati laudantium et! At mollitia expedita veniam asperiores veritatis architecto omnis doloribus delectus sit consectetur? Minima sint perferendis suscipit?")
+        message:SetText(text or "Please confirm this action.")
         message:SetFont("DynUI_Sidebar")
-        message:SetWide(frame:GetWide() * .8)
-        message:CenterHorizontal()
-        -- message:
+        message:SizeToContents()
+        message:SetContentAlignment(5)
+        message:SetY(70)
 
-        local buttons_container = frame:Add("DPanel")
-        buttons_container:SetBackgroundColor(color_transparent)
-        buttons_container:SetSize(frame:GetWide() * .8, 30)
-        buttons_container:SetY(frame:GetTall() - (buttons_container:GetTall() + 4))
-        buttons_container:CenterHorizontal()
+        local btns_cont = frame:Add("DPanel")
+        btns_cont:SetY(100)
+        btns_cont:Dock(BOTTOM)
+        btns_cont:SetTall(30)
+        btns_cont:SetPaintBackground(false)
+        btns_cont:DockMargin(0,0,0,5)
 
-        local confirm = buttons_container:Add("DynButton")
-        confirm:Dock(LEFT)
-        confirm:SetSize(200, 30)
-        confirm:SetTextColor(color_black)
-        confirm:SetColor(DynUI.Close)
+        local confirm = btns_cont:Add("DynButton")
         confirm:SetDText("Confirm Action")
+        confirm:SetColor(DynUI.Close)
+        confirm:Dock(LEFT)
         function confirm:DoClick()
-            if callback then
-                callback()
-            end
+            if callback then callback() end
             frame:Remove()
         end
 
-        local cancel = buttons_container:Add("DynButton")
-        cancel:Dock(RIGHT)
-        cancel:SetSize(200, 30)
-        cancel:SetTextColor(color_black)
-        cancel:SetColor(DynUI.Neutral)
-        cancel:SetDText("Cancel")
-        function cancel:DoClick()
+        local close = btns_cont:Add("DynButton")
+        close:SetDText("Cancel")
+        close:SetColor(DynUI.Neutral)
+        close:Dock(RIGHT)
+        function close:DoClick()
             frame:Remove()
         end
+
+
+        -- Frame sizing
+        local w, h = message:GetWide() + 50, title:GetTall() + message:GetTall() + btns_cont:GetTall() + 80
+        if title:GetWide() > message:GetWide() then w = title:GetWide() + 50 end
+        if w < 500 then w = 500 end
+        
+
+        frame:SetSize(w,h)
+        frame:SetContentAlignment(5)
+        frame:MakePopup()
+        frame:Center()
+
+        -- Buttons sizing
+        btns_cont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
+        confirm:SetSize(frame:GetWide() * .4, 30)
+        close:SetSize(frame:GetWide() * .4, 30)
+
+        -- Text centering
+        title:CenterHorizontal()
+        message:CenterHorizontal()
     end
 end

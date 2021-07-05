@@ -7,6 +7,8 @@ They also have some unique cases that you'll have to pay attention to when using
 ### Methods
 #### void `DoHeader()`
 Whether or not to draw the header.
+#### void `SetTitle(title)`
+Sets the title.
 #### boolean `SetBlur(blur)`
 Blur: Whether or not to blur the background behind the frame. Leave empty or falsy to return current blur value.
 
@@ -54,7 +56,7 @@ the switch is toggled, like a "Get" function.
 
 ## Tooltips
 ### Details
-Attach it to an element using the following method. Couldn't be any simpler.
+Pretty tooltips that appear when certain elements are hovered. Attach it to an element using the following method.
 ### Methods
 #### void `DynUI:MakeTooltip(frame, element, message, width)`
 Frame: Usually the "main" panel. The tooltip just needs a place to live. In a normal UI workflow, we would place this within the tab (see above) that we want it to appear in. <br>
