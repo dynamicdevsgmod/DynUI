@@ -71,11 +71,6 @@ if CLIENT then
         local frame = vgui.Create("DynFrame")
         frame:SetBlur( true )
         frame:SetDrawOnTop( true )
-        function frame:OnKeyCodePressed(key) -- TODO Remove
-            if key == KEY_ENTER then
-                self:Remove()
-            end
-        end
 
         local title = frame:Add("DLabel")
         title:SetText(ttl or "Are You Sure?")
