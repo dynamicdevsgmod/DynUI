@@ -5,8 +5,24 @@ function PANEL:Init()
     self:SetText("")
 end
 
+function PANEL:OnCursorEntered()
+    self.BackupColor = self.Color
+    self.DarkBackupColor = self.DarkColor
+
+    self.Color = DynUI:LightenColor(self.Color)
+    self.DarkColor = DynUI:LightenColor(self.DarkColor)
+end
+
+function PANEL:OnCursorExited()
+    self.Color = self.BackupColor
+    self.DarkColor = self.DarkBackupColor
+
+    self.BackupColor = self.Color
+    self.DarkBackupColor = self.DarkColor
+end
+
 function PANEL:Paint(w,h)
-    draw.RoundedBox(6, 0, 2, w, h - 4, self.darker_color or color_white)
+    draw.RoundedBox(6, 0, 2, w, h - 4, self.DarkColor or color_white)
 
     if self:IsHovered() and input.IsMouseDown(MOUSE_LEFT) then
         draw.RoundedBox(6, 0, 1, w, h - 4, self.Color or color_white)
@@ -19,7 +35,7 @@ end
 
 function PANEL:SetColor(clr) 
     self.Color = clr
-    self.darker_color = DynUI:DarkenColor(clr)
+    self.DarkColor = DynUI:DarkenColor(clr)
     return self.Color
 end
 

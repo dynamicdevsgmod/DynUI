@@ -49,10 +49,12 @@ if CLIENT then
     end
 
     function DynUI:DarkenColor(color)
-        local hovCol = Color(0,0,0)
-        hovCol.r = color.r - 30
-        hovCol.g = color.g - 30
-        hovCol.b = color.b - 30
+        local hovCol = Color(color.r - 30 , color.g - 30 , color.b - 30)
+        return hovCol
+    end
+
+    function DynUI:LightenColor(color)
+        local hovCol = Color(color.r + 8 , color.g + 8 , color.b + 8)
         return hovCol
     end
 
