@@ -31,9 +31,13 @@ local function openmenu()
     btn4:SetColor(DynUI.Buttons.Primary)
     btn4:SetTextColor(color_black)
     btn4:SetDText("You Found The Second Tab!")
+    function btn4:DoClick()
+        frame:SetAlpha(180)
+    end
 
     local switch = sidebar.Tabs["Tab One"]:Add("DynSwitch")
     switch:Center()
+    switch:SetWide(60)
     DynUI:MakeTooltip(sidebar.Tabs["Tab One"], switch, "I'm A Tooltip")
 end
 

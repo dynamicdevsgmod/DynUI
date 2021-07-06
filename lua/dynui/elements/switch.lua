@@ -5,7 +5,8 @@ function PANEL:Init()
     self:SetCursor("hand")
 
     self.Button = self:Add("DPanel")
-    self.Button:SetSize(25, self:GetTall())
+    self.Button:SetSize(20, self:GetTall())
+    self.Button:SetX(3)
     self.Button:SetMouseInputEnabled(false)
 
     self.Button.Paint = function(me,w,h)
@@ -19,11 +20,11 @@ function PANEL:OnMousePressed( key )
     if key != MOUSE_LEFT then return end
 
     if self.Toggle then
-        self.Button:MoveTo(0, 0, .4, 0, .5, function()
+        self.Button:MoveTo(3, 0, .4, 0, .5, function()
             self.Toggling = false
         end )
     else
-        self.Button:MoveTo(self:GetWide() - self.Button:GetWide(), 0, .4, 0, .5, function()
+        self.Button:MoveTo(self:GetWide() - self.Button:GetWide() - 3, 0, .4, 0, .5, function()
             self.Toggling = false
         end)
     end
