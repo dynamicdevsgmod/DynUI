@@ -55,7 +55,6 @@ function PANEL:DoHeader()
     end
 
     local minimize = self.Header:Add("DButton")
-    minimize:SetDisabled(true)
     minimize:Dock(RIGHT)
     minimize:SetWide(30)
     minimize:SetText("")
@@ -71,18 +70,50 @@ function PANEL:DoHeader()
     end
     minimize.DoClick = function(me)
         if not self.Minimized then
-            self:SetTall(self.MinHeight)
-            self:KillFocus()
-			self:SetMouseInputEnabled(false)
-			self:SetKeyboardInputEnabled(false)
-			self:SetAlpha(200)
-
-			gui.HideGameUI()
-
-            self.Minimized = true
+            self:Minimize(true) 
+        else
+            self:Minimize(false)
         end
     end
 
+end
+
+function PANEL:Minimize(b_Minimize)
+    if b_Minimize then
+        self:SetTall(self.MinHeight)
+        self:KillFocus()
+        self:SetMouseInputEnabled(false)
+        self:SetKeyboardInputEnabled(false)
+        self:SetAlpha(180)
+
+        gui.HideGameUI()
+
+        timer.Simple(0, function()
+            self.minOL = vgui.Create("DPanel")
+            self.minOL:SetSize( self:GetWide(), self.MinHeight )
+            self.minOL:SetPos( self:GetPos() )
+            self.minOL:SetCursor("hand")
+            self.minOL:SetMouseInputEnabled(true)
+            self.minOL.Paint = function(me)
+                if not IsValid(self) then me:Remove() end
+            end
+            self.minOL.OnMouseReleased = function(me)
+               if self.Minimized then
+                    self:Minimize(false)
+                    me:Remove()
+                end
+            end
+        end )
+
+        self.Minimized = true
+    else
+        self:SetTall(self.ResetHeight)
+        self:SetMouseInputEnabled(true)
+        self:SetKeyboardInputEnabled(true)
+        self:SetAlpha(255)
+
+        self.Minimized = false
+    end
 end
 
 function PANEL:SetBlur(blur)
