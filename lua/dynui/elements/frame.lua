@@ -96,6 +96,11 @@ function PANEL:Minimize(b_Minimize)
             self.minOL:SetMouseInputEnabled(true)
             self.minOL.Paint = function(me)
                 if not IsValid(self) then me:Remove() end
+
+                if gui.IsGameUIVisible() then
+                    self:Minimize(false)
+                    me:Remove()
+                end
             end
             self.minOL.OnMouseReleased = function(me)
                if self.Minimized then
