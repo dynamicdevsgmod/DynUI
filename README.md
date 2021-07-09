@@ -11,7 +11,8 @@ Whether or not to draw the header.
 Sets the title.
 #### boolean `SetBlur(blur)`
 Blur: Whether or not to blur the background behind the frame. Leave empty or falsy to return current blur value.
-
+#### void `Minimize(minimize)`
+Minimize: (boolean) True to minimize, false to maximize.
 ## DynSidebar
 ### Details
 Can only use on frames and panels (only recommended to use on the main frame, but if you want to try it on some child panel then don't cry about it if something breaks).
