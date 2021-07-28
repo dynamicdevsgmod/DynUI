@@ -65,7 +65,8 @@ Element: The element that we want the tooltip to appear on when we hover. <br>
 Message: The message that you want to appear when the tooltip is activated. <br>
 Width (optional*): Sets the width of the tooltip. *If the message takes up more than 100 pixels of width, you need to set this to accomadate for the extra space. <br>
 **Note: Does NOT support multiple lines or super fucking long messages, use a notification or something if you need to say something
-big.**
+big. <br>
+Note 2: Usually 20 pixels of horizontal padding works best when setting the width.**
 
 ## Confirmation prompts (Derma_Query() clone)
 ### Details
