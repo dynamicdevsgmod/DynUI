@@ -26,7 +26,7 @@ DynUI = {
 if CLIENT then
     function DynUI:AddFont(name,size,weight)
         surface.CreateFont("DynUI_"..name, {
-            font = "Montserrat",
+            font = "Rubik",
             size = size or 25,
             weight = weight or 500,
             antialias = true
@@ -58,6 +58,16 @@ if CLIENT then
         return hovCol
     end
 
+    function DynUI:LerpColor(fr, from, to)
+        return Color(
+            Lerp(fr, from.r, to.r),
+            Lerp(fr, from.g, to.g),
+            Lerp(fr, from.b, to.b),
+            Lerp(fr, from.a or 255, to.a or 255)
+        )
+    end
+    
+    
     function DynUI:MakeTooltip(mainparent, parent, message, width)
         local tt = vgui.Create("DynTooltip")
         tt:SetTTParent(parent)
