@@ -38,7 +38,8 @@ local function openmenu()
     local switch = sidebar.Tabs["Tab One"]:Add("DynSwitch")
     switch:Center()
     switch:SetWide(60)
-    DynUI:MakeTooltip(sidebar.Tabs["Tab One"], switch, "I'm A Tooltip")
+    switch:DoToggle(true)
+    local switch_tooltip = DynUI:MakeTooltip(sidebar.Tabs["Tab One"], switch, "I'm A Very Very Very Very Long Tooltip That I Am Using To Test Scaling", 420)
 end
 
 concommand.Add("dynui", openmenu)
