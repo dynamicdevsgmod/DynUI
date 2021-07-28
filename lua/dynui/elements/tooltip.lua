@@ -5,7 +5,7 @@ function PANEL:Init()
     self:MoveToFront()
     self.Prnt = nil
     self:SetDrawOnTop(true)
-    self:SetTall(40)
+    self:SetTall(35)
     self:SetWide(100)
 end
 
@@ -20,13 +20,13 @@ end
 
 function PANEL:Paint(w,h)
     draw.RoundedBox(2, 0,0,w,h - 10,DynUI.Tooltip)
-    draw.SimpleText(self.Text or "Tooltip Test", "DynUI_Tooltip", w * .5, 15, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(self.Text or "Tooltip Test", "DynUI_Tooltip", w * .5, 12, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     surface.SetDrawColor( DynUI.Tooltip )
 	draw.NoTexture()
 	surface.DrawPoly({
-        { x = w * .4, y = 30 },
-        { x = w * .6, y = 30 },
-        { x = w * .5, y = 40 }
+        { x = w * .5 - 9, y = 25 },
+        { x = w * .5 + 9, y = 25 },
+        { x = w * .5, y = 33 }
     })
 end
 
@@ -37,7 +37,7 @@ function PANEL:Think()
     if self.Prnt:IsHovered() or self.Prnt:IsChildHovered() then
         local mx,my = self:GetParent():CursorPos()
         self:SetAlpha(255)
-        self:SetPos(mx - (self:GetWide() * .5) , my - 50)
+        self:SetPos(mx - (self:GetWide() * .5) , my - 45)
     else
         if self:GetAlpha() > 0 then self:SetAlpha(0) end
     end

@@ -37,7 +37,7 @@ function PANEL:DoToggle(bool)
 
     if type(bool) != "boolean" then error("Wrong type passed to DynSwitch:Toggle()") end
     self.Toggle = bool
-    self.Button:SetPos(self:GetWide() - self.Button:GetWide(), 0)
+    self.Button:SetPos(self:GetWide() - self.Button:GetWide() - 3, 0)
 end
 
 function PANEL:Paint(w,h)
