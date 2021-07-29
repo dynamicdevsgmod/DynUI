@@ -12,7 +12,7 @@ function PANEL:Init()
     self.Button.Paint = function(me,w,h)
         surface.SetDrawColor(color_white)
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 10, 120 )
+        DynUI:DrawCircle( w * .5, h * .5, 9.5, 30 )
     end
 
     self.Color = DynUI.Switch.Disabled
@@ -71,12 +71,7 @@ function PANEL:DoToggle(bool)
 end
 
 function PANEL:Paint(w,h)
-    -- if self.Toggle then
-    --     draw.RoundedBox(12, 0, 0, w, h, DynUI.Switch.Enabled)
-    -- else
-    --     draw.RoundedBox(14, 0, 0, w, h, DynUI.Switch.Disabled)
-    -- end
-    draw.RoundedBox(12, 0, 0, w, h, self.Color)
+    draw.RoundedBox(16, 0, 0, w, h, self.Color)
 end
 
 derma.DefineControl("DynSwitch", "Dynamic VGUI Toggle Switch", PANEL, "DPanel")
