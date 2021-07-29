@@ -6,6 +6,8 @@ function PANEL:Init()
 end
 
 function PANEL:HoverCol(exit)
+    self.Animating = true
+
     local nCol, nDarkCol
     
     if not exit then
@@ -16,7 +18,9 @@ function PANEL:HoverCol(exit)
         nDarkCol = self.BckpClrDark
     end
 
-    local anim = self:NewAnimation( .5, 0, nil, nil )
+    local anim = self:NewAnimation( .5, 0, nil, function() 
+        self.Animating = false 
+    end )
 	anim.Think = function(this, _panel, fraction)
         self.Color = DynUI:LerpColor(.5, self.Color, nCol)
         self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, nDarkCol)
@@ -35,9 +39,11 @@ function PANEL:Paint(w,h)
     draw.RoundedBox(6, 0, 2, w, h - 4, self.DarkColor or color_white)
 
     if self:IsHovered() and input.IsMouseDown(MOUSE_LEFT) then
-        self:HoverCol(true)
         draw.RoundedBox(6, 0, 2, w, h - 4, self.Color or color_white)
         draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 2, self.TextColor or DynUI.Grey, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+        if self.Animating then return end
+        self:HoverCol(true)
     else
         draw.RoundedBox(6, 0, 0, w, h - 6, self.Color or color_white)
         draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 4, self.TextColor or DynUI.Grey, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
