@@ -5,30 +5,37 @@ function PANEL:Init()
     self:SetText("")
 end
 
-function PANEL:OnCursorEntered()
-    self.Color =  DynUI:LerpColor(.5, self.Color, DynUI:LightenColor(self.Color))
-    self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, DynUI:LightenColor(self.DarkColor))
+function PANEL:HoverCol(exit)
+    local nCol, nDarkCol
+    
+    if not exit then
+        nCol = DynUI:LightenColor(self.Color)
+        nDarkCol = DynUI:LightenColor(self.DarkColor)        
+    else
+        nCol = self.BckpClr
+        nDarkCol = self.BckpClrDark
+    end
 
-    -- local anim = self:NewAnimation( 1, 0, nil, nil )
-	-- anim.Color = DynUI:LightenColor(self.Color)
-	-- anim.Think = DynUI.ColorAnim
+    local anim = self:NewAnimation( .5, 0, nil, nil )
+	anim.Think = function(this, _panel, fraction)
+        self.Color = DynUI:LerpColor(.5, self.Color, nCol)
+        self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, nDarkCol)
+    end
+end
+
+function PANEL:OnCursorEntered()
+    self:HoverCol(false)
 end
 
 function PANEL:OnCursorExited()
-    -- self.Color = self.BckpClr
-    -- self.DarkColor = self.BkpClrDark
-
-    -- self.BckpClr = self.Color
-    -- self.BkpClrDark = self.DarkColor
-
-    self.Color =  DynUI:LerpColor(.5, self.Color, self.BckpClr)
-    self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, self.BkpClrDark)
+    self:HoverCol(true)
 end
 
 function PANEL:Paint(w,h)
     draw.RoundedBox(6, 0, 2, w, h - 4, self.DarkColor or color_white)
 
     if self:IsHovered() and input.IsMouseDown(MOUSE_LEFT) then
+        self:HoverCol(true)
         draw.RoundedBox(6, 0, 2, w, h - 4, self.Color or color_white)
         draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 2, self.TextColor or DynUI.Grey, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     else
@@ -42,7 +49,7 @@ function PANEL:SetColor(clr)
     self.DarkColor = DynUI:DarkenColor(clr)
 
     self.BckpClr = self.Color
-    self.BkpClrDark = self.DarkColor
+    self.BckpClrDark = self.DarkColor
     return self.Color
 end
 

@@ -49,13 +49,15 @@ if CLIENT then
         surface.DrawPoly( cir )
     end
 
-    function DynUI:DarkenColor(color)
-        local hovCol = Color(color.r - 30 , color.g - 30 , color.b - 30)
+    function DynUI:DarkenColor(color, amount)
+        local change = amount or 30
+        local hovCol = Color(color.r - change , color.g - change , color.b - change)
         return hovCol
     end
 
-    function DynUI:LightenColor(color)
-        local hovCol = Color(color.r + 10 , color.g + 10 , color.b + 10)
+    function DynUI:LightenColor(color, amount)
+        local change = amount or 10
+        local hovCol = Color(color.r + change , color.g + change , color.b + change)
         return hovCol
     end
 
@@ -67,7 +69,6 @@ if CLIENT then
             Lerp(fr, from.a or 255, to.a or 255)
         )
     end
-    
     
     function DynUI:MakeTooltip(mainparent, parent, message, width)
         local tt = vgui.Create("DynTooltip")
