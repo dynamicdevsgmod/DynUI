@@ -2,6 +2,7 @@ DynUI = {
     ["Primary"] = Color(48,50,54),
     ["Header"] = Color(33,36,41),
     ["Neutral"] = Color(114,114,114),
+    ["Grey"] = Color(235,235,235),
     ["Title"] = color_white,
     ["Close"] = Color(197,64,64),
     ["Minimize"] = Color(224,174,38),
@@ -54,7 +55,7 @@ if CLIENT then
     end
 
     function DynUI:LightenColor(color)
-        local hovCol = Color(color.r + 8 , color.g + 8 , color.b + 8)
+        local hovCol = Color(color.r + 10 , color.g + 10 , color.b + 10)
         return hovCol
     end
 

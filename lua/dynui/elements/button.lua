@@ -6,19 +6,23 @@ function PANEL:Init()
 end
 
 function PANEL:OnCursorEntered()
-    self.BackupColor = self.Color
-    self.DarkBackupColor = self.DarkColor
+    self.Color =  DynUI:LerpColor(.5, self.Color, DynUI:LightenColor(self.Color))
+    self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, DynUI:LightenColor(self.DarkColor))
 
-    self.Color = DynUI:LightenColor(self.Color)
-    self.DarkColor = DynUI:LightenColor(self.DarkColor)
+    -- local anim = self:NewAnimation( 1, 0, nil, nil )
+	-- anim.Color = DynUI:LightenColor(self.Color)
+	-- anim.Think = DynUI.ColorAnim
 end
 
 function PANEL:OnCursorExited()
-    self.Color = self.BackupColor
-    self.DarkColor = self.DarkBackupColor
+    -- self.Color = self.BckpClr
+    -- self.DarkColor = self.BkpClrDark
 
-    self.BackupColor = self.Color
-    self.DarkBackupColor = self.DarkColor
+    -- self.BckpClr = self.Color
+    -- self.BkpClrDark = self.DarkColor
+
+    self.Color =  DynUI:LerpColor(.5, self.Color, self.BckpClr)
+    self.DarkColor = DynUI:LerpColor(.5, self.DarkColor, self.BkpClrDark)
 end
 
 function PANEL:Paint(w,h)
@@ -26,16 +30,19 @@ function PANEL:Paint(w,h)
 
     if self:IsHovered() and input.IsMouseDown(MOUSE_LEFT) then
         draw.RoundedBox(6, 0, 2, w, h - 4, self.Color or color_white)
-        draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 2, self.TextColor or color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 2, self.TextColor or DynUI.Grey, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     else
         draw.RoundedBox(6, 0, 0, w, h - 6, self.Color or color_white)
-        draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 4, self.TextColor or color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self.DText or "Button", "DynUI_Button", w * .5, (h * .5) - 4, self.TextColor or DynUI.Grey, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 end
 
 function PANEL:SetColor(clr) 
     self.Color = clr
     self.DarkColor = DynUI:DarkenColor(clr)
+
+    self.BckpClr = self.Color
+    self.BkpClrDark = self.DarkColor
     return self.Color
 end
 
