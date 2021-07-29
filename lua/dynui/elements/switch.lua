@@ -9,10 +9,13 @@ function PANEL:Init()
     self.Button:SetX(3)
     self.Button:SetMouseInputEnabled(false)
 
+    local cir = DynUI.Circles.New(CIRCLE_FILLED, 10, self.Button:GetWide() * .5, self.Button:GetTall() * .5)
+    cir:SetDistance(1)
+    
     self.Button.Paint = function(me,w,h)
         surface.SetDrawColor(color_white)
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 9.5, 30 )
+        cir()
     end
 
     self.Color = DynUI.Switch.Disabled

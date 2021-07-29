@@ -36,6 +36,9 @@ function PANEL:DoHeader()
     self.ResetHeight = self:GetTall()
     self.MinHeight = self.Header:GetTall()
     
+    local cir = DynUI.Circles.New(CIRCLE_FILLED, 8, 30 * .5, self.Header:GetTall() * .5)
+    cir:SetDistance(1)
+
     local close = self.Header:Add("DButton")
     close:Dock(RIGHT)
     close:SetWide(30)
@@ -48,7 +51,7 @@ function PANEL:DoHeader()
             surface.SetDrawColor(hov_close)
         end
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 8, 30 )
+        cir()
     end
     close.DoClick = function(me)
         self:Remove()
@@ -66,7 +69,7 @@ function PANEL:DoHeader()
             surface.SetDrawColor(hov_min)
         end
         draw.NoTexture()
-        DynUI:DrawCircle( w * .5, h * .5, 8, 30 )
+        cir()
     end
     minimize.DoClick = function(me)
         if not self.Minimized then
