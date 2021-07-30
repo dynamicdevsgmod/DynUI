@@ -35,6 +35,21 @@ function PANEL:OnCursorExited()
     self:HoverCol(true)
 end
 
+function PANEL:OnMousePressed(key)
+    if key == MOUSE_LEFT then
+        self:HoverCol(true)
+    end
+end
+
+function PANEL:OnMouseReleased(key)
+   if key == MOUSE_LEFT then
+       self:HoverCol(false)
+   end 
+
+   self:DoClick()
+end
+
+
 function PANEL:Paint(w,h)
     draw.RoundedBox(6, 0, 2, w, h - 4, self.DarkColor or color_white)
 
