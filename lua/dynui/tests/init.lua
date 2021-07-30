@@ -65,7 +65,7 @@ local function openmenu()
                 DynUI:ConfirmAction(nil, "Delete all Dynamic data?", function() frame:Remove() end, function()
                     self:SetDText("Action Cancelled")
                     
-                    timer.Simple(1.5, function() self:SetDText("Delete All Data") end)
+                    timer.Simple(1.5, function() if not IsValid(self) then return end self:SetDText("Delete All Data") end)
                 end )
             end
 
@@ -89,6 +89,15 @@ local function openmenu()
             random_button.button:SetSize( scroll:GetWide() * .4, 30 )
             random_button.button:SetColor(DynUI.Buttons.Primary)
             random_button.button:SetDText("Click Me")
+            function random_button.button:DoClick()
+                self:DoSpinner()
+                
+                timer.Simple(1, function()
+                    if not IsValid(self) then return end
+
+                    self:EndSpinner()
+                end )
+            end
 
             random_button:SetTall(30)
         end
