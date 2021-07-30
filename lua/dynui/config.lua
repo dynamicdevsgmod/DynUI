@@ -70,54 +70,54 @@ if CLIENT then
     end
 
     function DynUI:ConfirmAction(ttl, text, callback, closecallback)
-        local frame = vgui.Create("DynFrame")
+        frame = vgui.Create("DynFrame")
         frame:SetBlur( true )
         frame:SetDrawOnTop( true )
 
-        local title = frame:Add("DLabel")
-        title:SetText(ttl or "Are You Sure?")
-        title:SetFont("DynUI_Query_Title")
-        title:SizeToContents()
-        title:SetContentAlignment(5)
-        title:SetY(10)
-        title:SetColor(color_white)
+        frame.title = frame:Add("DLabel")
+        frame.title:SetText(ttl or "Are You Sure?")
+        frame.title:SetFont("DynUI_Query_Title")
+        frame.title:SizeToContents()
+        frame.title:SetContentAlignment(5)
+        frame.title:SetY(10)
+        frame.title:SetColor(color_white)
 
-        local message = frame:Add("DLabel")
-        message:SetText(text or "Please confirm this action.")
-        message:SetFont("DynUI_Sidebar")
-        message:SizeToContents()
-        message:SetContentAlignment(5)
-        message:SetY(70)
+        frame.message = frame:Add("DLabel")
+        frame.message:SetText(text or "Please confirm this action.")
+        frame.message:SetFont("DynUI_Sidebar")
+        frame.message:SizeToContents()
+        frame.message:SetContentAlignment(5)
+        frame.message:SetY(70)
 
-        local btns_cont = frame:Add("DPanel")
-        btns_cont:SetY(100)
-        btns_cont:Dock(BOTTOM)
-        btns_cont:SetTall(30)
-        btns_cont:SetPaintBackground(false)
-        btns_cont:DockMargin(0,0,0,5)
+        frame.btns_cont = frame:Add("DPanel")
+        frame.btns_cont:SetY(100)
+        frame.btns_cont:Dock(BOTTOM)
+        frame.btns_cont:SetTall(30)
+        frame.btns_cont:SetPaintBackground(false)
+        frame.btns_cont:DockMargin(0,0,0,5)
 
-        local confirm = btns_cont:Add("DynButton")
-        confirm:SetDText("Confirm Action")
-        confirm:SetColor(DynUI.Close)
-        confirm:Dock(LEFT)
-        function confirm:DoClick()
+        frame.confirm = frame.btns_cont:Add("DynButton")
+        frame.confirm:SetDText("Confirm Action")
+        frame.confirm:SetColor(DynUI.Close)
+        frame.confirm:Dock(LEFT)
+        function frame.confirm:DoClick()
             frame:Remove()
             if callback then callback() end
         end
 
-        local close = btns_cont:Add("DynButton")
-        close:SetDText("Cancel")
-        close:SetColor(DynUI.Neutral)
-        close:Dock(RIGHT)
-        function close:DoClick()
+        frame.close = frame.btns_cont:Add("DynButton")
+        frame.close:SetDText("Cancel")
+        frame.close:SetColor(DynUI.Neutral)
+        frame.close:Dock(RIGHT)
+        function frame.close:DoClick()
             frame:Remove()
             if closecallback then closecallback() end
         end
 
 
         -- Frame sizing
-        local w, h = message:GetWide() + 50, title:GetTall() + message:GetTall() + btns_cont:GetTall() + 80
-        if title:GetWide() > message:GetWide() then w = title:GetWide() + 50 end
+        local w, h = frame.message:GetWide() + 50, frame.title:GetTall() + frame.message:GetTall() + frame.btns_cont:GetTall() + 80
+        if frame.title:GetWide() > frame.message:GetWide() then w = frame.title:GetWide() + 50 end
         if w < 500 then w = 500 end
         
 
@@ -128,13 +128,13 @@ if CLIENT then
         frame:DoModal()
 
         -- Buttons sizing
-        btns_cont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
-        confirm:SetSize(frame:GetWide() * .4, 30)
-        close:SetSize(frame:GetWide() * .4, 30)
+        frame.btns_cont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
+        frame.confirm:SetSize(frame:GetWide() * .4, 30)
+        frame.close:SetSize(frame:GetWide() * .4, 30)
 
         -- Text centering
-        title:CenterHorizontal()
-        message:CenterHorizontal()
+        frame.title:CenterHorizontal()
+        frame.message:CenterHorizontal()
 
         return frame
     end
