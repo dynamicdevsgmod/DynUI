@@ -20,6 +20,7 @@ else
     -- Sidebar Icons
     resource.AddFile("materials/dynui/cog_placeholder.png")
     resource.AddFile("materials/dynui/house_placeholder.png")
+    resource.AddFile("materials/dynui/loader.png")
 end
 
 

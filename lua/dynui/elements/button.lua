@@ -1,4 +1,5 @@
 local PANEL = {}
+local spinner = Material("dynui/loader.png", "smooth")
 
 function PANEL:Init()
     self.H = self:GetTall()
