@@ -4,7 +4,7 @@ AddCSLuaFile(dir.."/config.lua")
 include(dir.."/config.lua")
 
 local folders = {
-    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua", "switch.lua", "tooltip.lua"},
+    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua", "switch.lua", "tooltip.lua", "scrollpanel.lua"},
     ["tests"] = {"init.lua"},
 }
 

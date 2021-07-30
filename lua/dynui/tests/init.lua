@@ -17,32 +17,11 @@ local function openmenu()
     do -- Settings Tab
         local panel = sidebar.Tabs["Settings"]
         
-        local scroll = panel:Add("DScrollPanel")
+        local scroll = panel:Add("DynScrollPanel")
         scroll:SetWide( panel:GetWide() * .5 )
         scroll:SetTall( panel:GetTall() - 20 )
         scroll:SetBackgroundColor(color_white)
         scroll:CenterHorizontal()
-        local bar = scroll:GetVBar()
-        bar:SetWide(8)
-        bar:SetHideButtons(true)
-        bar.Paint = nil
-
-        do
-            local col = DynUI.Neutral
-            local col2 = DynUI:LightenColor(DynUI.Neutral, 20)
-
-            bar.btnGrip.Paint = function(me,w,h)
-
-                if me:IsHovered() or me.Depressed then
-                    col = col2
-                else
-                    col = DynUI.Neutral
-                end
-                
-                draw.RoundedBox(12,0,0,w,h,col)
-            end
-        end
-
 
         do -- Delete Data
             local delete_data = scroll:Add("DPanel")
