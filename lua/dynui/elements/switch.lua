@@ -41,11 +41,11 @@ function PANEL:ToggleLerpColor(status)
         col = DynUI.Switch.Enabled
     end
 
-    local anim = self:NewAnimation( .4, 0, nil, function() 
+    local anim = self:NewAnimation( .25, 0, nil, function() 
         self.Animating = false 
     end )
 	anim.Think = function(this, _panel, fraction)
-        self.Color = DynUI:LerpColor(.4, self.Color, col)
+        self.Color = DynUI:LerpColor(.25, self.Color, col)
     end
 end
 
