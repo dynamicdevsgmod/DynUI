@@ -63,9 +63,13 @@ local function openmenu()
             delete_data.button:SetDText("Delete All Data")
             function delete_data.button:DoClick()
                 DynUI:ConfirmAction(nil, "Delete all Dynamic data?", function() frame:Remove() end, function()
+                    self:EndSpinner()
                     self:SetDText("Action Cancelled")
                     
-                    timer.Simple(1.5, function() if not IsValid(self) then return end self:SetDText("Delete All Data") end)
+                    timer.Simple(1.5, function() 
+                        if not IsValid(self) then return end 
+                        self:SetDText("Delete All Data")
+                    end)
                 end )
             end
 
