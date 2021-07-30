@@ -6,6 +6,31 @@ function PANEL:Init()
     self:SetText("")
 end
 
+function PANEL:DoSpinner(color)
+    self.text = self:SetDText()
+    self:SetDText("")
+
+    self.Spinner = self:Add("DPanel")
+    self.Spinner:SetSize(self:GetSize())
+
+    function self.Spinner:Paint(w,h)
+        if (not self.EndTime or SysTime() >= self.EndTime) then
+            self.EndTime = SysTime() + 2
+        end
+        self.Rotation = ((self.EndTime - SysTime()) / 2) * 720
+
+        draw.NoTexture()
+        surface.SetDrawColor(color or color_white)
+        surface.SetMaterial(spinner)
+        surface.DrawTexturedRectRotated( w * .5, h * .5 - 3, 25, 25, math.Round(self.Rotation) )
+    end
+end
+
+function PANEL:EndSpinner()
+    self.Spinner:Remove()
+    self:SetDText(self.text)
+end
+
 function PANEL:HoverCol(exit)
     self.Animating = true
 
@@ -78,8 +103,8 @@ function PANEL:SetTextColor(clr)
 end
 
 function PANEL:SetDText(text)
+    if not text then return self.DText end
     self.DText = text
-    return self.DText
 end
 
 derma.DefineControl("DynButton", "Dynamic VGUI Button", PANEL, "DButton")
