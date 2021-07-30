@@ -19,6 +19,15 @@ function PANEL:Init()
     end
 
     self.Color = DynUI.Switch.Disabled
+
+
+    -- Two circles at the start and end of the switch for better rounding
+    self.LeftCircle = DynUI.Circles.New(CIRCLE_FILLED, 12.3, 12, self:GetTall() * .5)
+    self.LeftCircle:SetDistance(1)
+
+    self.RightCircle = self.LeftCircle:Copy()
+    self.RightCircle:SetX(self:GetWide() - 16)
+    self.RightCircle:SetDistance(1)
 end
 
 function PANEL:ToggleLerpColor(status)
@@ -74,7 +83,13 @@ function PANEL:DoToggle(bool)
 end
 
 function PANEL:Paint(w,h)
-    draw.RoundedBox(16, 0, 0, w, h, self.Color)
+    draw.RoundedBox(16, 1, 0, w - 1, h, self.Color)
+
+    draw.NoTexture()
+    surface.SetDrawColor(self.Color)
+
+    self.LeftCircle()
+    self.RightCircle()
 end
 
 derma.DefineControl("DynSwitch", "Dynamic VGUI Toggle Switch", PANEL, "DPanel")
