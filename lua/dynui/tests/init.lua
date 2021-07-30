@@ -51,7 +51,7 @@ local function openmenu()
             function delete_data:Paint() end
     
             delete_data.label = delete_data:Add("DLabel")
-            delete_data.label:SetText("Delete all save data:")
+            delete_data.label:SetText("Confirmation prompts:")
             delete_data.label:SetFont("DynUI_Title")
             delete_data.label:Dock(LEFT)
             delete_data.label:SizeToContentsX()
@@ -62,6 +62,8 @@ local function openmenu()
             delete_data.button:SetColor(DynUI.Close)
             delete_data.button:SetDText("Delete All Data")
             function delete_data.button:DoClick()
+                self:DoSpinner()
+
                 DynUI:ConfirmAction(nil, "Delete all Dynamic data?", function() frame:Remove() end, function()
                     self:EndSpinner()
                     self:SetDText("Action Cancelled")
@@ -83,7 +85,7 @@ local function openmenu()
             function random_button:Paint() end
             
             random_button.label = random_button:Add("DLabel")
-            random_button.label:SetText("Click this:")
+            random_button.label:SetText("Button spinners:")
             random_button.label:SetFont("DynUI_Title")
             random_button.label:Dock(LEFT)
             random_button.label:SizeToContentsX()
@@ -113,7 +115,7 @@ local function openmenu()
             function toggle_theme:Paint() end
 
             toggle_theme.label = toggle_theme:Add("DLabel")
-            toggle_theme.label:SetText("Toggle menu theme:")
+            toggle_theme.label:SetText("Switches:")
             toggle_theme.label:SetFont("DynUI_Title")
             toggle_theme.label:Dock(LEFT)
             toggle_theme.label:SizeToContentsX()
