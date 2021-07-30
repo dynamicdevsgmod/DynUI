@@ -83,7 +83,7 @@ function PANEL:DoToggle(bool)
 end
 
 function PANEL:Paint(w,h)
-    draw.RoundedBox(16, 1, 0, w - 1, h, self.Color)
+    draw.RoundedBox(16, 1, 0, w - 8, h, self.Color)
 
     draw.NoTexture()
     surface.SetDrawColor(self.Color)
