@@ -15,7 +15,11 @@ if CLIENT then
     DynUI:AddFont("Tooltip",15, 100)
     DynUI:AddFont("Query_Title",28)
 else
+    -- Sounds
     resource.AddFile("sound/dynui/toggle_click.wav")
+    -- Sidebar Icons
+    resource.AddFile("materials/dynui/cog_placeholder.png")
+    resource.AddFile("materials/dynui/house_placeholder.png")
 end
 
 

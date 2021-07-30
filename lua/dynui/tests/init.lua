@@ -1,5 +1,6 @@
 local mats = {
-    ["SCP682"] = Material("fv_addons/682_leftmouse.png")
+    ["Home"] = Material("dynui/cog_placeholder.png"),
+    ["SCP682"] = Material("dynui/house_placeholder.png")
 }
 
 local function openmenu()
