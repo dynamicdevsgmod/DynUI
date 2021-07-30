@@ -20,7 +20,7 @@ DynUI = {
     },
     ["Buttons"] = {
         ["Primary"] = Color(26,121,230),
-        ["Success"] = Color(26,230,60)
+        ["Success"] = Color(30,163,52)
     }
 }
 
