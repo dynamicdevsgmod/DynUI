@@ -22,7 +22,7 @@ function PANEL:DoSpinner(color)
         draw.NoTexture()
         surface.SetDrawColor(color or color_white)
         surface.SetMaterial(spinner)
-        surface.DrawTexturedRectRotated( w * .5, h * .5 - 3, 25, 25, math.Round(self.Rotation) )
+        surface.DrawTexturedRectRotated( w * .5, h * .5 - 3, 20, 20, math.Round(self.Rotation) )
     end
 end
 
