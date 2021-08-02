@@ -33,24 +33,22 @@ end
 
 function PANEL:HoverCol(exit)
     self.Animating = true
-
-    local nCol, nDarkCol
     
     if not exit then
-        nCol = DynUI:LightenColor(self.Color)
-        nDarkCol = DynUI:LightenColor(self.DarkColor)        
+        self.nCol = DynUI:LightenColor(self.Color)
+        self.nDarkCol = DynUI:LightenColor(self.DarkColor)        
     else
-        nCol = self.BckpClr
-        nDarkCol = self.BckpClrDark
+        self.nCol = self.BckpClr
+        self.nDarkCol = self.BckpClrDark
     end
 
-    local anim = self:NewAnimation( .25, 0, nil, function() 
-        self.Animating = false 
-    end )
-	anim.Think = function(this, _panel, fraction)
-        self.Color = DynUI:LerpColor(.25, self.Color, nCol)
-        self.DarkColor = DynUI:LerpColor(.25, self.DarkColor, nDarkCol)
-    end
+    -- local anim = self:NewAnimation( .25, 0, nil, function() 
+    --     self.Animating = false 
+    -- end )
+	-- anim.Think = function(this, _panel, fraction)
+    --     self.Color = DynUI:LerpColor(.25, self.Color, nCol)
+    --     self.DarkColor = DynUI:LerpColor(.25, self.DarkColor, nDarkCol)
+    -- end
 end
 
 function PANEL:OnCursorEntered()
@@ -77,6 +75,13 @@ end
 
 
 function PANEL:Paint(w,h)
+    if !self.Animating then goto skipanim end
+
+    self.Color = DynUI:LerpColor(self.Color, self.nCol, 2)
+    self.DarkColor = DynUI:LerpColor(self.DarkColor, self.nDarkCol, 2)
+
+    ::skipanim::
+
     draw.RoundedBox(6, 0, 2, w, h - 4, self.DarkColor or color_white)
 
     if self:IsHovered() and input.IsMouseDown(MOUSE_LEFT) then
