@@ -49,7 +49,7 @@ if CLIENT then
         return hovCol
     end
 
-    function DynUI:LerpColor(fr, from, to)
+    function DynUI:LerpColor(from, to)
         return Color(
             math.Approach(from.r, to.r, 12),
             math.Approach(from.g, to.g, 12),
