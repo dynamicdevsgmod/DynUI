@@ -77,8 +77,8 @@ end
 function PANEL:Paint(w,h)
     if !self.Animating then goto skipanim end
 
-    self.Color = DynUI:LerpColor(self.Color, self.nCol, 2)
-    self.DarkColor = DynUI:LerpColor(self.DarkColor, self.nDarkCol, 2)
+    self.Color = DynUI:LerpColor(self.Color, self.nCol, 50)
+    self.DarkColor = DynUI:LerpColor(self.DarkColor, self.nDarkCol, 50)
 
     ::skipanim::
 

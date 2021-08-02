@@ -50,11 +50,13 @@ if CLIENT then
     end
 
     function DynUI:LerpColor(from, to, changeby)
+        local ChangeValue = FrameTime() * changeby
+
         return Color(
-            math.Approach(from.r, to.r, changeby),
-            math.Approach(from.g, to.g, changeby),
-            math.Approach(from.b, to.b, changeby),
-            math.Approach(from.a or 255, to.a or 255, changeby)
+            math.Approach(from.r, to.r, ChangeValue),
+            math.Approach(from.g, to.g, ChangeValue),
+            math.Approach(from.b, to.b, ChangeValue),
+            math.Approach(from.a or 255, to.a or 255, ChangeValue)
         )
     end
     
