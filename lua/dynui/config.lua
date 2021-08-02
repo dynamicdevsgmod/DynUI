@@ -51,10 +51,10 @@ if CLIENT then
 
     function DynUI:LerpColor(fr, from, to)
         return Color(
-            Lerp(fr, from.r, to.r),
-            Lerp(fr, from.g, to.g),
-            Lerp(fr, from.b, to.b),
-            Lerp(fr, from.a or 255, to.a or 255)
+            math.Approach(from.r, to.r, 12),
+            math.Approach(from.g, to.g, 12),
+            math.Approach(from.b, to.b, 12),
+            math.Approach(from.a or 255, to.a or 255, 12)
         )
     end
     
