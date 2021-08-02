@@ -77,11 +77,10 @@ function PANEL:Paint(w,h)
     if !self.Animating then goto skipanim end
 
     if self.Status then
-        self.Color = DynUI:LerpColor(.25, self.Color, DynUI.Switch.Enabled)
+        self.Color = DynUI:LerpColor(self.Color, DynUI.Switch.Enabled)
     else
-        self.Color = DynUI:LerpColor(.25, self.Color, DynUI.Switch.Disabled)
+        self.Color = DynUI:LerpColor(self.Color, DynUI.Switch.Disabled)
     end
-
     ::skipanim::
 
     draw.RoundedBox(16, 1, 0, w - 8, h, self.Color)
