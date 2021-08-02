@@ -107,6 +107,27 @@ local function openmenu()
             toggle_theme:SetTall(30)
         end
 
+        do -- Text Input
+            local text_entry = scroll:Add("DPanel")
+            text_entry:Dock(TOP)
+            text_entry:DockMargin(0,20,10,0)
+            function text_entry:Paint() end
+
+            text_entry.label = text_entry:Add("DLabel")
+            text_entry.label:SetText("Text Entry:")
+            text_entry.label:SetFont("DynUI_Title")
+            text_entry.label:Dock(LEFT)
+            text_entry.label:SizeToContentsX()
+
+            local entry = text_entry:Add("DynTextEntry")
+            entry:SetSize(200, 40)
+            entry:SetX(scroll:GetWide() * .65)
+            entry:SetAccentColor(Color(230, 126, 34))
+            entry:SetText("I Am A Text Entry")
+            
+            text_entry:SetTall(40)
+        end
+
         do -- Color Picker
             local color_picker = scroll:Add("DPanel")
             color_picker:Dock(TOP)
