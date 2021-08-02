@@ -49,12 +49,12 @@ if CLIENT then
         return hovCol
     end
 
-    function DynUI:LerpColor(from, to)
+    function DynUI:LerpColor(from, to, changeby)
         return Color(
-            math.Approach(from.r, to.r, 12),
-            math.Approach(from.g, to.g, 12),
-            math.Approach(from.b, to.b, 12),
-            math.Approach(from.a or 255, to.a or 255, 12)
+            math.Approach(from.r, to.r, changeby),
+            math.Approach(from.g, to.g, changeby),
+            math.Approach(from.b, to.b, changeby),
+            math.Approach(from.a or 255, to.a or 255, changeby)
         )
     end
     
