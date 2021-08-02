@@ -2,6 +2,15 @@
 This library includes components very similar to the default VGUI components (like "DFrame" and "DButton"), but they actually look good (thank god). 
 They also have some unique cases that you'll have to pay attention to when using this library.
 
+# Standards
+## Branches
+Utilize the `dev` branch to make new commits. Once you have reviewed your own code, create a pull request to be reviewed by JoshJOkayguy which (if accepted) will be merged into the `main` branch.
+
+## Naming convention
+All variables that are used more than once should be named using PascalCase, if it's a minor value that only gets used once right after declaration it may be in snake_case.
+## Commit messages
+Commits from this point forwards should begin with the type of commit (feat for features, fix for bug fixes, etc.) then a descriptive yet brief commit message. If more is needed utilize commit descriptions.
+
 # Components
 ## DynFrame
 ### Methods
