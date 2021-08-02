@@ -96,6 +96,8 @@ function PANEL:AddTab(str_name, mat_icon, first)
         self.Tabs[str_name]:Show()
         self.ActiveTab = str_name
     end
+
+    return self.Tabs[str_name]
 end
 
 derma.DefineControl("DynSidebar", "Dynamic VGUI Sidebar", PANEL, "DPanel")
