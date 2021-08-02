@@ -1,6 +1,6 @@
 local mats = {
-    ["Home"] = Material("dynui/cog_placeholder.png"),
-    ["SCP682"] = Material("dynui/house_placeholder.png")
+    ["Cog"] = Material("dynui/cog_placeholder.png"),
+    ["Home"] = Material("dynui/house_placeholder.png")
 }
 
 local function openmenu()
@@ -12,8 +12,8 @@ local function openmenu()
     frame:DoHeader()
 
     local sidebar = frame:Add("DynSidebar")
-    sidebar:AddTab("Settings", mats.Home, true)
-
+    
+    sidebar:AddTab("Settings", mats.Cog)
     do -- Settings Tab
         local panel = sidebar.Tabs["Settings"]
         
@@ -175,6 +175,21 @@ local function openmenu()
                 frame:Remove()
             end
         end
+    end
+
+    sidebar:AddTab("TextEntry", mats.Home, true)
+    do -- TextEntry tab
+        local panel = sidebar.Tabs["TextEntry"]
+
+        local entry = panel:Add("DynTextEntry")
+        entry:SetSize(200, 40)
+        entry:CenterHorizontal()
+        entry:SetY(100)
+
+        local default_entry = panel:Add("DTextEntry")
+        default_entry:SetSize(200, 40)
+        default_entry:CenterHorizontal()
+        default_entry:SetY(200)
     end
 
 end
