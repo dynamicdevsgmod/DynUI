@@ -31,6 +31,8 @@ function PANEL:DoHeader()
     
         local x,y = gui.MouseX(), gui.MouseY() - self.Header.MouseY
         self:SetPos(x - self.Header.MouseX,y)
+
+        if self:GetY() < 0 then self:SetY(0) end
     end
 
     self.ResetHeight = self:GetTall()
