@@ -7,6 +7,7 @@ function PANEL:Init()
     self.HighlightColor = Color(18,110,196)
     self.AccentColor = Color(255,255,255)
     self:SetCursor("beam")
+    self:SetTall(40)
 
     self.Disabled = false
     
