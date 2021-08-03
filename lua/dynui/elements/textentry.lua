@@ -6,6 +6,7 @@ function PANEL:Init()
     self.TextColor = color_white
     self.HighlightColor = Color(18,110,196)
     self.AccentColor = Color(255,255,255)
+    self.PlaceholderColor = DynUI:DarkenColor(self.TextColor)
     self:SetCursor("beam")
     self:SetTall(40)
 
@@ -25,6 +26,11 @@ function PANEL:Init()
     self.TextEntry:SetFont(self.Font)
     self.TextEntry.Paint = function(me,w,h)
         me:DrawTextEntryText(self.TextColor, self.HighlightColor, color_white)
+
+
+        if #self:GetText() == 0 then
+            draw.SimpleText(self.Placeholder or "", self:GetFont(), 2, h * .5, self.PlaceholderColor, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
     end
     self.TextEntry.OnFocusChanged = function(_me, focus)
         if focus then 
@@ -46,6 +52,14 @@ function PANEL:GetTextColor() return self.TextColor end
 
 function PANEL:SetAccentColor(color) self.AccentColor = color self.Decoration:SetBackgroundColor(self.AccentColor) end
 function PANEL:GetAccentColor() return self.AccentColor end
+
+function PANEL:SetPlaceholderText(text)
+    self.Placeholder = text
+end
+
+function PANEL:SetPlaceholderColor(color)
+    self.PlaceholderColor = color
+end
 
 function PANEL:SetDisabled(disable)
     self:SetKeyboardInputEnabled(!disable)
