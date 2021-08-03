@@ -203,11 +203,11 @@ local function openmenu()
         local panel = sidebar.Tabs["TextEntry"]
 
         local entry = panel:Add("DynTextEntry")
-        entry:SetSize(200, 40)
+        entry:SetWide(200)
         entry:CenterHorizontal()
         entry:SetY(100)
         entry:SetAccentColor(Color(230, 126, 34))
-        entry:SetText("I like fortnite")
+        entry:SetText("Some Text")
         -- entry:SetDisabled(true)
         print(entry:GetAccentColor())
 
