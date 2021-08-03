@@ -6,7 +6,7 @@ function PANEL:Init()
     self.TextColor = color_white
     self.HighlightColor = Color(18,110,196)
     self.AccentColor = Color(255,255,255)
-    self.PlaceholderColor = DynUI:DarkenColor(self.TextColor)
+    self.PlaceholderColor = DynUI:DarkenColor(self.TextColor, 50)
     self:SetCursor("beam")
     self:SetTall(40)
 
