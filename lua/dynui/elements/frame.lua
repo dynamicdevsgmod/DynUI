@@ -31,6 +31,8 @@ function PANEL:DoHeader()
     
         local x,y = gui.MouseX(), gui.MouseY() - self.Header.MouseY
         self:SetPos(x - self.Header.MouseX,y)
+
+        if self:GetY() < 0 then self:SetY(0) end
     end
 
     self.ResetHeight = self:GetTall()
@@ -43,12 +45,12 @@ function PANEL:DoHeader()
     close:Dock(RIGHT)
     close:SetWide(30)
     close:SetText("")
-    local hov_close = DynUI:DarkenColor(DynUI.Close)
+    local HovClose = DynUI:DarkenColor(DynUI.Close)
     close.Paint = function(me,w,h)
         if not me:IsHovered() then
             surface.SetDrawColor(DynUI.Close)
         else
-            surface.SetDrawColor(hov_close)
+            surface.SetDrawColor(HovClose)
         end
         draw.NoTexture()
         cir()
@@ -61,12 +63,12 @@ function PANEL:DoHeader()
     minimize:Dock(RIGHT)
     minimize:SetWide(30)
     minimize:SetText("")
-    local hov_min = DynUI:DarkenColor(DynUI.Minimize)
+    local HovMin = DynUI:DarkenColor(DynUI.Minimize)
     minimize.Paint = function(me,w,h)
         if not me:IsHovered() then
             surface.SetDrawColor(DynUI.Minimize)
         else
-            surface.SetDrawColor(hov_min)
+            surface.SetDrawColor(HovMin)
         end
         draw.NoTexture()
         cir()

@@ -1,6 +1,6 @@
 local mats = {
-    ["Home"] = Material("dynui/cog_placeholder.png"),
-    ["SCP682"] = Material("dynui/house_placeholder.png")
+    ["Cog"] = Material("dynui/cog_placeholder.png"),
+    ["Home"] = Material("dynui/house_placeholder.png")
 }
 
 local function openmenu()
@@ -12,8 +12,8 @@ local function openmenu()
     frame:DoHeader()
 
     local sidebar = frame:Add("DynSidebar")
-    sidebar:AddTab("Settings", mats.Home, true)
-
+    
+    sidebar:AddTab("Settings", mats.Cog, true)
     do -- Settings Tab
         local panel = sidebar.Tabs["Settings"]
         
@@ -107,6 +107,28 @@ local function openmenu()
             toggle_theme:SetTall(30)
         end
 
+        do -- Text Input
+            local text_entry = scroll:Add("DPanel")
+            text_entry:Dock(TOP)
+            text_entry:DockMargin(0,20,10,0)
+            function text_entry:Paint() end
+
+            text_entry.label = text_entry:Add("DLabel")
+            text_entry.label:SetText("Text Entry:")
+            text_entry.label:SetFont("DynUI_Title")
+            text_entry.label:Dock(LEFT)
+            text_entry.label:SizeToContentsX()
+
+            local entry = text_entry:Add("DynTextEntry")
+            entry:SetSize(200, 40)
+            entry:SetX(scroll:GetWide() * .65)
+            entry:SetAccentColor(Color(230, 126, 34))
+            entry:SetPlaceholderText("Placeholder Text :)")
+            DynUI:MakeTooltip(parent, entry, "Enter some text", 120)
+            
+            text_entry:SetTall(40)
+        end
+
         do -- Color Picker
             local color_picker = scroll:Add("DPanel")
             color_picker:Dock(TOP)
@@ -175,6 +197,28 @@ local function openmenu()
                 frame:Remove()
             end
         end
+    end
+
+    sidebar:AddTab("TextEntry", mats.Home)
+    do -- TextEntry tab
+        local panel = sidebar.Tabs["TextEntry"]
+
+        local entry = panel:Add("DynTextEntry")
+        entry:SetWide(200)
+        entry:CenterHorizontal()
+        entry:SetY(100)
+        entry:SetAccentColor(Color(230, 126, 34))
+        entry:SetPlaceholderText("Placeholder")
+        entry:SetPlaceholderColor(Color(155,155,155))
+
+        -- entry:SetText("Some Text")
+        -- entry:SetDisabled(true)
+        print(entry:GetAccentColor())
+
+        local default_entry = panel:Add("DTextEntry")
+        default_entry:SetSize(200, 40)
+        default_entry:CenterHorizontal()
+        default_entry:SetY(200)
     end
 
 end

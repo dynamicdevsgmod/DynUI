@@ -49,12 +49,14 @@ if CLIENT then
         return hovCol
     end
 
-    function DynUI:LerpColor(fr, from, to)
+    function DynUI:LerpColor(from, to, changeby)
+        local ChangeValue = FrameTime() * changeby
+
         return Color(
-            Lerp(fr, from.r, to.r),
-            Lerp(fr, from.g, to.g),
-            Lerp(fr, from.b, to.b),
-            Lerp(fr, from.a or 255, to.a or 255)
+            math.Approach(from.r, to.r, ChangeValue),
+            math.Approach(from.g, to.g, ChangeValue),
+            math.Approach(from.b, to.b, ChangeValue),
+            math.Approach(from.a or 255, to.a or 255, ChangeValue)
         )
     end
     
@@ -89,14 +91,14 @@ if CLIENT then
         frame.message:SetContentAlignment(5)
         frame.message:SetY(70)
 
-        frame.btns_cont = frame:Add("DPanel")
-        frame.btns_cont:SetY(100)
-        frame.btns_cont:Dock(BOTTOM)
-        frame.btns_cont:SetTall(30)
-        frame.btns_cont:SetPaintBackground(false)
-        frame.btns_cont:DockMargin(0,0,0,5)
+        frame.BtnsCont = frame:Add("DPanel")
+        frame.BtnsCont:SetY(100)
+        frame.BtnsCont:Dock(BOTTOM)
+        frame.BtnsCont:SetTall(30)
+        frame.BtnsCont:SetPaintBackground(false)
+        frame.BtnsCont:DockMargin(0,0,0,5)
 
-        frame.confirm = frame.btns_cont:Add("DynButton")
+        frame.confirm = frame.BtnsCont:Add("DynButton")
         frame.confirm:SetDText("Confirm Action")
         frame.confirm:SetColor(DynUI.Close)
         frame.confirm:Dock(LEFT)
@@ -105,7 +107,7 @@ if CLIENT then
             if callback then callback() end
         end
 
-        frame.close = frame.btns_cont:Add("DynButton")
+        frame.close = frame.BtnsCont:Add("DynButton")
         frame.close:SetDText("Cancel")
         frame.close:SetColor(DynUI.Neutral)
         frame.close:Dock(RIGHT)
@@ -116,7 +118,7 @@ if CLIENT then
 
 
         -- Frame sizing
-        local w, h = frame.message:GetWide() + 50, frame.title:GetTall() + frame.message:GetTall() + frame.btns_cont:GetTall() + 80
+        local w, h = frame.message:GetWide() + 50, frame.title:GetTall() + frame.message:GetTall() + frame.BtnsCont:GetTall() + 80
         if frame.title:GetWide() > frame.message:GetWide() then w = frame.title:GetWide() + 50 end
         if w < 500 then w = 500 end
         
@@ -128,7 +130,7 @@ if CLIENT then
         frame:DoModal()
 
         -- Buttons sizing
-        frame.btns_cont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
+        frame.BtnsCont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
         frame.confirm:SetSize(frame:GetWide() * .4, 30)
         frame.close:SetSize(frame:GetWide() * .4, 30)
 

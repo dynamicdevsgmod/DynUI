@@ -4,13 +4,13 @@ AddCSLuaFile(dir.."/config.lua")
 include(dir.."/config.lua")
 
 local folders = {
-    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua", "switch.lua", "tooltip.lua", "scrollpanel.lua"},
+    ["elements"] = {"frame.lua", "sidebar.lua", "button.lua", "switch.lua", "tooltip.lua", "scrollpanel.lua", "textentry.lua"},
     ["tests"] = {"init.lua"},
 }
 
 if CLIENT then
     DynUI:AddFont("Title",23)
-    DynUI:AddFont("Sidebar",20) 
+    DynUI:AddFont("Sidebar",20)
     DynUI:AddFont("Button",17, 100)
     DynUI:AddFont("Tooltip",15, 100)
     DynUI:AddFont("Query_Title",28)

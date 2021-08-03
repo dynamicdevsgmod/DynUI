@@ -77,6 +77,16 @@ Width (optional*): Sets the width of the tooltip. *If the message takes up more 
 big. <br>
 Note 2: Usually 20 pixels of horizontal padding works best when setting the width.**
 
+## Text Entries
+### Details
+Most of the normal DTextEntry functions that you actually use will be available to use on this. If it's not and you need it, make a feature request or some shit.
+### Known Issues
+You shouldn't make the height go over 40 if you don't want text centering issues, in fact if you just set the width the default height will be 40. Also, setting the text color after text has been written may not work as intended.
+### Methods
+#### Color/void <Set/Get>AccentColor(color/nil)
+Sets/Gets the color of the accent bar on the bottom of the text entry.
+
+
 ## Confirmation prompts (Derma_Query() clone)
 ### Details
 Similar to derma query, creates a new "confirmation prompt" with customizable text that accepts callbacks when confirmed.

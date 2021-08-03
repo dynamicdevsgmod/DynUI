@@ -28,25 +28,14 @@ function PANEL:Init()
     self.RightCircle = self.LeftCircle:Copy()
     self.RightCircle:SetX(self:GetWide() - 16)
     self.RightCircle:SetDistance(1)
+
+    self.Status = false
 end
 
 function PANEL:ToggleLerpColor(status)
     self.Animating = true
 
-    local col
-    
-    if not status then
-        col = DynUI.Switch.Disabled        
-    else
-        col = DynUI.Switch.Enabled
-    end
-
-    local anim = self:NewAnimation( .25, 0, nil, function() 
-        self.Animating = false 
-    end )
-	anim.Think = function(this, _panel, fraction)
-        self.Color = DynUI:LerpColor(.25, self.Color, col)
-    end
+    self.Status = !self.Status
 end
 
 
@@ -77,12 +66,23 @@ function PANEL:DoToggle(bool)
 
     if bool then
         self.Color = DynUI.Switch.Enabled
+        self.Status = true
     else
         self.Color = DynUI.Switch.Disabled
+        self.Status = false
     end
 end
 
 function PANEL:Paint(w,h)
+    if !self.Animating then goto skipanim end
+
+    if self.Status then
+        self.Color = DynUI:LerpColor(self.Color, DynUI.Switch.Enabled, 600)
+    else
+        self.Color = DynUI:LerpColor(self.Color, DynUI.Switch.Disabled, 600)
+    end
+    ::skipanim::
+
     draw.RoundedBox(16, 1, 0, w - 8, h, self.Color)
 
     draw.NoTexture()
