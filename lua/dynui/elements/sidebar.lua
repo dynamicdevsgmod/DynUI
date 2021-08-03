@@ -80,15 +80,15 @@ function PANEL:AddTab(str_name, mat_icon, first)
         self.indicator:MoveTo(self.indicator:GetX(), me:GetY(), .3, 0, .5)
     end
 
-    local icon_container = self.TabButtons[str_name]:Add("DPanel")
-    icon_container:Dock(RIGHT)
-    icon_container:SetWide(50)
-    icon_container:SetTall(50)
-    icon_container:DockPadding(10,10,10,10)
-    icon_container:SetBackgroundColor(color_transparent)
-    icon_container:SetMouseInputEnabled(false)
+    local IconContainer = self.TabButtons[str_name]:Add("DPanel")
+    IconContainer:Dock(RIGHT)
+    IconContainer:SetWide(50)
+    IconContainer:SetTall(50)
+    IconContainer:DockPadding(10,10,10,10)
+    IconContainer:SetBackgroundColor(color_transparent)
+    IconContainer:SetMouseInputEnabled(false)
 
-    local icon = icon_container:Add("DImage")
+    local icon = IconContainer:Add("DImage")
     icon:Dock(FILL)
     icon:SetMaterial(mat_icon)
 
