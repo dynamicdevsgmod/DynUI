@@ -124,6 +124,7 @@ local function openmenu()
             entry:SetX(scroll:GetWide() * .65)
             entry:SetAccentColor(Color(230, 126, 34))
             entry:SetText("I Am A Text Entry")
+            DynUI:MakeTooltip(parent, entry, "Enter some text", 120)
             
             text_entry:SetTall(40)
         end
