@@ -13,7 +13,7 @@ local function openmenu()
 
     local sidebar = frame:Add("DynSidebar")
     
-    sidebar:AddTab("Settings", mats.Cog)
+    sidebar:AddTab("Settings", mats.Cog, true)
     do -- Settings Tab
         local panel = sidebar.Tabs["Settings"]
         
@@ -198,7 +198,7 @@ local function openmenu()
         end
     end
 
-    sidebar:AddTab("TextEntry", mats.Home, true)
+    sidebar:AddTab("TextEntry", mats.Home)
     do -- TextEntry tab
         local panel = sidebar.Tabs["TextEntry"]
 
