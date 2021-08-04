@@ -199,7 +199,7 @@ local function openmenu()
         end
     end
 
-    sidebar:AddTab("TextEntry", mats.Home)
+    sidebar:AddTab("TextEntry", mats.Cog)
     do -- TextEntry tab
         local panel = sidebar.Tabs["TextEntry"]
 
@@ -220,6 +220,45 @@ local function openmenu()
         default_entry:SetSize(200, 40)
         default_entry:CenterHorizontal()
         default_entry:SetY(200)
+    end
+
+    sidebar:AddTab("CollapsibleCategory", mats.Cog)
+    do -- ColCat tab
+        local panel = sidebar.Tabs["CollapsibleCategory"]
+
+        local scroll = panel:Add("DynScrollPanel")
+        scroll:SetWide( panel:GetWide() * .5 )
+        scroll:SetTall( panel:GetTall() - 20 )
+        scroll:SetBackgroundColor(color_white)
+        scroll:CenterHorizontal()
+        
+        local DynColCat = scroll:Add("DynCollapsibleCategory")
+        DynColCat:Dock(TOP)
+        DynColCat:SetLabel("Dynamic ColCat")
+
+        do
+            local ColCatScroll = vgui.Create("DynScrollPanel")
+            ColCatScroll:Dock(FILL)
+            DynColCat:SetContents(ColCatScroll)
+    
+            local btn = ColCatScroll:Add("DynButton")
+            btn:SetColor(color_white)
+            btn:SetDText("Hello World") 
+        end
+
+        local DefColCat = scroll:Add("DCollapsibleCategory")
+        DefColCat:Dock(TOP)
+        DefColCat:SetLabel("Default ColCat")
+
+        do
+            local ColCatScroll = vgui.Create("DynScrollPanel")
+            ColCatScroll:Dock(FILL)
+            DefColCat:SetContents(ColCatScroll)
+    
+            local btn = ColCatScroll:Add("DynButton")
+            btn:SetColor(color_white)
+            btn:SetDText("Hello World") 
+        end
     end
 
 end
