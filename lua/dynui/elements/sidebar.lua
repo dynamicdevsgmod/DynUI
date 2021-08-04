@@ -74,7 +74,7 @@ function PANEL:AddTab(str_name, mat_icon, first)
         local width,height = draw.SimpleText(str_name, "DynUI_Sidebar", 5, h *.32, color_white, TEXT_ALIGN_LEFT)
     
         if width > self:GetWide() - 55 then
-            self:SetWide(width + 55)
+            self:SetWide(width + 60)
             self:SetX((self:GetWide() - 50) * -1)
             self.indicator:SetX(self:GetWide() - 2)
         end
