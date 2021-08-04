@@ -36,7 +36,7 @@ function PANEL:OnToggle(expanded)
         OffsetTo = 5
     end
 
-    local anim = self.Header:NewAnimation(.25, 0, 1)
+    local anim = self.Header:NewAnimation(.25, 0, -1)
     anim.Think = function()
         self.Header.VBarHeight = math.Approach(self.Header.VBarHeight,to,2)
         self.Header.VBarOffset = math.Approach(self.Header.VBarOffset,OffsetTo,2)
