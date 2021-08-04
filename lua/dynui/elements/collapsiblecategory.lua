@@ -3,10 +3,11 @@ local PANEL = {}
 function PANEL:Init()
     self.Color = DynUI.Sidebar.Primary
 
-    if self:GetExpanded() then
-        self.Header.VBarHeight = 0
-    else
-        self.Header.VBarHeight = 5
+    self.Header.VBarHeight = 0
+    self.Header.VBarOffset = 5
+    if not self:GetExpanded() then
+        self.Header.VBarHeight = 12
+        self.Header.VBarOffset = 0
     end
 
     self:SetHeaderHeight(30)
@@ -21,22 +22,26 @@ function PANEL:Init()
         if self:GetExpanded() then
             
         else
-            surface.DrawRect(w - 25, h * .5 - 5, 2, self.Header.VBarHeight)
-            surface.DrawRect(w - 25, h * .5 + 2, 2, self.Header.VBarHeight)
+            surface.DrawRect(w - 25, (h * .5) - me.VBarOffset, 2, me.VBarHeight)
+            -- surface.DrawRect(w - 25, h * .5 - 5, 2, self.Header.VBarHeight)
+            -- surface.DrawRect(w - 25, h * .5 + 2, 2, self.Header.VBarHeight)
         end
     end
 end
 
 function PANEL:OnToggle(expanded)
     local to = 0
+    local OffsetTo = 0
 
     if self.Header.VBarHeight < 5 then
-        to = 5
+        to = 12
+        OffsetTo = 5
     end
 
-    local anim = self.Header:NewAnimation(.1, 0, 1)
+    local anim = self.Header:NewAnimation(.25, 0, 1)
     anim.Think = function()
-        self.Header.VBarHeight = math.Approach(self.Header.VBarHeight,to,1)
+        self.Header.VBarHeight = math.Approach(self.Header.VBarHeight,to,2)
+        self.Header.VBarOffset = math.Approach(self.Header.VBarOffset,OffsetTo,2)
     end
 
 end
