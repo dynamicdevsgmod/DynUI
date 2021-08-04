@@ -205,6 +205,7 @@ local function openmenu()
 
         local entry = panel:Add("DynTextEntry")
         entry:SetWide(200)
+        entry:SetTall(100)
         entry:CenterHorizontal()
         entry:SetY(100)
         entry:SetAccentColor(Color(230, 126, 34))

@@ -20,8 +20,6 @@ function PANEL:Init()
     self.Decoration.GetColor = self.Decoration.GetBackgroundColor
 
     self.TextEntry = self:Add("DTextEntry")
-    self.TextEntry:Dock(FILL)
-    self.TextEntry:DockMargin(0,2,2,2)
     self.TextEntry:SetDrawLanguageID(false)
     self.TextEntry:SetFont(self.Font)
     self.TextEntry.Paint = function(me,w,h)
@@ -39,6 +37,16 @@ function PANEL:Init()
             self.Decoration:ColorTo(self.AccentColor, .25, 0)
         end
     end
+end
+
+function PANEL:PerformLayout(w,h)
+    self.TextEntry:SetWide(w)
+    self.TextEntry:SetPos(2, h * .5 - 2)
+end
+
+function PANEL:OnMouseReleased(key)
+    if key ~= MOUSE_LEFT then return end
+    self.TextEntry:RequestFocus()
 end
 
 function PANEL:SetText(text) self.TextEntry:SetText(text) end
