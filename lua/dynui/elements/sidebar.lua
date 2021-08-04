@@ -71,8 +71,15 @@ function PANEL:AddTab(str_name, mat_icon, first)
     self.TabButtons[str_name]:SetTall(50)
     self.TabButtons[str_name]:SetText("")
     self.TabButtons[str_name].Paint = function(me,w,h)
-        draw.DrawText(str_name, "DynUI_Sidebar", 5, h *.32, color_white, TEXT_ALIGN_LEFT)
+        local width,height = draw.SimpleText(str_name, "DynUI_Sidebar", 5, h *.32, color_white, TEXT_ALIGN_LEFT)
+    
+        if width > self:GetWide() - 55 then
+            self:SetWide(width + 55)
+            self:SetX((self:GetWide() - 50) * -1)
+            self.indicator:SetX(self:GetWide() - 2)
+        end
     end
+
     self.TabButtons[str_name].DoClick = function(me)
         self.Tabs[self.ActiveTab]:Hide()
         self.Tabs[str_name]:Show()
