@@ -23,8 +23,6 @@ function PANEL:Init()
             
         else
             surface.DrawRect(w - 25, (h * .5) - me.VBarOffset, 2, me.VBarHeight)
-            -- surface.DrawRect(w - 25, h * .5 - 5, 2, self.Header.VBarHeight)
-            -- surface.DrawRect(w - 25, h * .5 + 2, 2, self.Header.VBarHeight)
         end
     end
 end
