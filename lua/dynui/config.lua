@@ -39,7 +39,7 @@ if CLIENT then
 
     function DynUI:DarkenColor(color, amount)
         local change = amount or 30
-        local hovCol = Color(color.r - change , color.g - change , color.b - change)
+        local hovCol = Color(math.max(color.r - change, 0) , math.max(color.g - change, 0) , math.max(color.b - change, 0))
         return hovCol
     end
 
