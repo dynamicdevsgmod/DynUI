@@ -72,7 +72,7 @@ if CLIENT then
     end
 
     function DynUI:ConfirmAction(ttl, text, callback, closecallback)
-        frame = vgui.Create("DynFrame")
+        local frame = vgui.Create("DynFrame")
         frame:SetBlur( true )
         frame:SetDrawOnTop( true )
 
@@ -137,6 +137,80 @@ if CLIENT then
         -- Text centering
         frame.title:CenterHorizontal()
         frame.message:CenterHorizontal()
+
+        return frame
+    end
+
+    function DynUI:QueryString(ttl, placeholder, callback, closecallback)
+        local frame = vgui.Create("DynFrame")
+        frame:SetBlur( true )
+        frame:SetDrawOnTop( true )
+
+        frame.title = frame:Add("DLabel")
+        frame.title:SetText(ttl or "Are You Sure?")
+        frame.title:SetFont("DynUI_Query_Title")
+        frame.title:SizeToContents()
+        frame.title:SetContentAlignment(5)
+        frame.title:SetY(10)
+        frame.title:SetColor(color_white)
+
+        --[[
+            TextEntry
+        ]]--
+        frame.textentry = frame:Add("DynTextEntry")
+        frame.textentry:SetPlaceholderText(placeholder or "")
+        frame.textentry:SetWide(250)
+        frame.textentry:SetTall(50)
+        frame.textentry:SetAccentColor(DynUI.Grey)
+
+        frame.BtnsCont = frame:Add("DPanel")
+        frame.BtnsCont:SetY(100)
+        frame.BtnsCont:Dock(BOTTOM)
+        frame.BtnsCont:SetTall(30)
+        frame.BtnsCont:SetPaintBackground(false)
+        frame.BtnsCont:DockMargin(0,0,0,5)
+
+        frame.confirm = frame.BtnsCont:Add("DynButton")
+        frame.confirm:SetDText("Confirm Action")
+        frame.confirm:SetColor(DynUI.Close)
+        frame.confirm:Dock(LEFT)
+        function frame.confirm:DoClick()
+            frame:Remove()
+            if callback then callback() end
+        end
+
+        frame.close = frame.BtnsCont:Add("DynButton")
+        frame.close:SetDText("Cancel")
+        frame.close:SetColor(DynUI.Neutral)
+        frame.close:Dock(RIGHT)
+        function frame.close:DoClick()
+            frame:Remove()
+            if closecallback then closecallback() end
+        end
+
+
+        -- Frame sizing
+        local w, h = frame.title:GetWide() + 100, frame.title:GetTall() + frame.textentry:GetTall() + frame.BtnsCont:GetTall() + 80
+        if frame.title:GetWide() > frame:GetWide() then w = frame.title:GetWide() + 50 end
+        if w < 500 then w = 500 end
+        
+
+        frame:SetSize(w,h)
+        frame:SetContentAlignment(5)
+        frame:MakePopup()
+        frame:Center()
+        frame:DoModal()
+
+        -- Buttons sizing
+        frame.BtnsCont:DockPadding(frame:GetWide() * .05, 0, frame:GetWide() * .05, 0)
+        frame.confirm:SetSize(frame:GetWide() * .4, 30)
+        frame.close:SetSize(frame:GetWide() * .4, 30)
+
+        -- Text centering
+        frame.title:CenterHorizontal()
+
+        -- TextEntry centering
+        frame.textentry:Center()
 
         return frame
     end
