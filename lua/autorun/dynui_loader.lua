@@ -24,9 +24,10 @@ if CLIENT then
     DynUI:AddFont("Tooltip",15, 100)
     DynUI:AddFont("Query_Title",28)
 else
-    -- Sounds
-    resource.AddFile("sound/dynui/toggle_click.wav")
-    -- Sidebar Icons
+    for _,v in ipairs(file.Find("sound/dynui/*", "GAME")) do
+        resource.AddFile("sound/dynui/"..v)
+    end
+    -- Sidebar Icons (Should be packaged with whatever addon you're making)
     resource.AddFile("materials/dynui/cog_placeholder.png")
     resource.AddFile("materials/dynui/house_placeholder.png")
     resource.AddFile("materials/dynui/loader2.png")
