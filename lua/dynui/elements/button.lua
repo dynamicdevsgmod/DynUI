@@ -62,6 +62,8 @@ function PANEL:OnMouseReleased(key)
    if key == MOUSE_LEFT then
        self:HoverCol(false)
        surface.PlaySound("dynui/btn_up.mp3")
+       self:DoClick()
+    end 
 end
 
 
