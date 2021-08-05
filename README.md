@@ -4,7 +4,7 @@ They also have some unique cases that you'll have to pay attention to when using
 
 # Standards
 ## Branches
-Utilize new branches branch to make new commits. Once you have reviewed your own code, create a pull request to be reviewed by JoshJOkayguy which (if accepted) will be merged into the `main` branch.
+Utilize new branches branch to make new commits. Once you have reviewed your own code, create a pull request to be reviewed by JoshJOkayguy which (if accepted) will be merged into the `main` branch. You should make new pull requests for every feature you complete.
 
 ## Naming convention
 All variables that are used more than once should be named using PascalCase, if it's a minor value that only gets used once right after declaration it may be in snake_case.
