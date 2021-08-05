@@ -176,7 +176,7 @@ if CLIENT then
         frame.confirm:Dock(LEFT)
         function frame.confirm:DoClick()
             frame:Remove()
-            if callback then callback(msg) end
+            if callback then callback(self:GetValue()) end
         end
 
         frame.close = frame.BtnsCont:Add("DynButton")
@@ -185,7 +185,7 @@ if CLIENT then
         frame.close:Dock(RIGHT)
         function frame.close:DoClick()
             frame:Remove()
-            if closecallback then closecallback(msg) end
+            if closecallback then closecallback(self:GetValue()) end
         end
 
 
