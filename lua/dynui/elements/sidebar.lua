@@ -14,10 +14,10 @@ function PANEL:Init()
 
     self:MoveToBack()
 
-    self.indicator = self:Add("DPanel")
-    self.indicator:SetPos(self:GetWide() - 2, 0)
-    self.indicator:SetSize(5, 50)
-    self.indicator.Paint = function(me,w,h)
+    self.Indicator = self:Add("DPanel")
+    self.Indicator:SetPos(self:GetWide() - 2, 0)
+    self.Indicator:SetSize(5, 50)
+    self.Indicator.Paint = function(me,w,h)
         surface.SetDrawColor(DynUI.Sidebar.Indicator)
         surface.DrawRect(0,0,w,h)
     end
@@ -76,7 +76,7 @@ function PANEL:AddTab(str_name, mat_icon, first)
         if width > self:GetWide() - 55 then
             self:SetWide(width + 60)
             self:SetX((self:GetWide() - 50) * -1)
-            self.indicator:SetX(self:GetWide() - 2)
+            self.Indicator:SetX(self:GetWide() - 2)
         end
     end
 
@@ -84,7 +84,7 @@ function PANEL:AddTab(str_name, mat_icon, first)
         self.Tabs[self.ActiveTab]:Hide()
         self.Tabs[str_name]:Show()
         self.ActiveTab = str_name
-        self.indicator:MoveTo(self.indicator:GetX(), me:GetY(), .3, 0, .5)
+        self.Indicator:MoveTo(self.Indicator:GetX(), me:GetY(), .3, 0, .5)
     end
 
     local IconContainer = self.TabButtons[str_name]:Add("DPanel")
