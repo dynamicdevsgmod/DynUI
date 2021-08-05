@@ -3,7 +3,7 @@ This library includes components very similar to the default VGUI components (li
 They also have some unique cases that you'll have to pay attention to when using this library.
 
 # Usage
-This library is ONLY for use with Dynamic Devs addons, not for personal use unless in certain circumstances (this is subject to change). When packaging the library with your addon, delete the readme and any other git-specific things in the folder. 
+This library is ONLY for use with Dynamic Devs addons, not for personal use unless in certain circumstances (this is subject to change). When packaging the library with your addon, delete the readme, test folder, and any other git-specific things in the folder.
 
 # Standards
 ## Branches
