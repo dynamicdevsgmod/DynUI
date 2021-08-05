@@ -2,6 +2,9 @@
 This library includes components very similar to the default VGUI components (like "DFrame" and "DButton"), but they actually look good (thank god). 
 They also have some unique cases that you'll have to pay attention to when using this library.
 
+# Usage
+This library is ONLY for use with Dynamic Devs addons, not for personal use unless in certain circumstances (this is subject to change). When packaging the library with your addon, delete the readme and any other git-specific things in the folder. 
+
 # Standards
 ## Branches
 Utilize new branches branch to make new commits. Once you have reviewed your own code, create a pull request to be reviewed by JoshJOkayguy which (if accepted) will be merged into the `main` branch. You should make new pull requests for every feature you complete.
