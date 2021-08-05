@@ -46,10 +46,14 @@ function PANEL:OnMousePressed( key )
         self.Button:MoveTo(3, 0, .4, 0, .5, function()
             self.Toggling = false
         end )
+
+        surface.PlaySound("dynui/switch_off.mp3")
     else
         self.Button:MoveTo(self:GetWide() - self.Button:GetWide() - 3, 0, .4, 0, .5, function()
             self.Toggling = false
         end)
+
+        surface.PlaySound("dynui/switch_on.mp3")
     end
 
     self.Toggle = not self.Toggle
