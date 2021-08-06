@@ -175,7 +175,7 @@ if CLIENT then
         frame.confirm:SetColor(DynUI.Close)
         frame.confirm:Dock(LEFT)
         function frame.confirm:DoClick()
-            if callback then callback(frame.textentry:GetValue()) end
+            if callback then callback(frame.textentry:GetText()) end
             frame:Remove()
         end
 
@@ -184,7 +184,7 @@ if CLIENT then
         frame.close:SetColor(DynUI.Neutral)
         frame.close:Dock(RIGHT)
         function frame.close:DoClick()
-            if closecallback then closecallback(frame.textentry:GetValue()) end
+            if closecallback then closecallback(frame.textentry:GetText()) end
             frame:Remove()
         end
 
