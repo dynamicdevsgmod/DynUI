@@ -3,6 +3,7 @@ PANEL.Tabs = {}
 
 function PANEL:Init()
     local parent = self:GetParent()
+    self.bar:SetWide(4)
 
     if not parent.Header then
         self:SetSize( 200 , parent:GetTall())
@@ -34,7 +35,7 @@ function PANEL:Paint(w,h)
             self.Open = false
         end
     else
-        if not self.Open then 
+        if not self.Open and not input.IsMouseDown(MOUSE_LEFT) then 
             self:MoveTo( (self:GetWide() - 50) * -1, self:GetY(), .3, 0, .5 )
             self.Open = true
         end
@@ -107,4 +108,4 @@ function PANEL:AddTab(str_name, mat_icon, first)
     return self.Tabs[str_name]
 end
 
-derma.DefineControl("DynSidebar", "Dynamic VGUI Sidebar", PANEL, "DPanel")
+derma.DefineControl("DynSidebar", "Dynamic VGUI Sidebar", PANEL, "DynScrollPanel")
