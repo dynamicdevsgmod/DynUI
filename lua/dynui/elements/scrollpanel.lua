@@ -1,15 +1,15 @@
 local PANEL = {}
 
 function PANEL:Init()
-    local bar = self:GetVBar()
-    bar:SetWide(8)
-    bar:SetHideButtons(true)
-    bar.Paint = nil
+    self.bar = self:GetVBar()
+    self.bar:SetWide(8)
+    self.bar:SetHideButtons(true)
+    self.bar.Paint = nil
 
     local col = DynUI.Neutral
     local col2 = DynUI:LightenColor(DynUI.Neutral, 20)
 
-    bar.btnGrip.Paint = function(me,w,h)
+    self.bar.btnGrip.Paint = function(me,w,h)
 
         if me:IsHovered() or me.Depressed then
             col = col2

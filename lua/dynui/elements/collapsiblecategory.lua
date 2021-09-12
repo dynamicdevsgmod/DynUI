@@ -3,7 +3,7 @@ local PANEL = {}
 function PANEL:Init()
     self.Color = DynUI.Sidebar.Primary
 
-    self.Header.VBarHeight = 0
+    self.Header.VBarHeight = 12
     self.Header.VBarOffset = 5
     if not self:GetExpanded() then
         self.Header.VBarHeight = 12
@@ -19,9 +19,7 @@ function PANEL:Init()
         surface.SetDrawColor(color_white)
         surface.DrawRect(w - 30, h * .5, 12, 2)
 
-        if self:GetExpanded() then
-            
-        else
+        if not self:GetExpanded() then
             surface.DrawRect(w - 25, (h * .5) - me.VBarOffset, 2, me.VBarHeight)
         end
     end

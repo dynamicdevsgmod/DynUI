@@ -9,6 +9,8 @@ function PANEL:Init()
     self.Button:SetX(3)
     self.Button:SetMouseInputEnabled(false)
 
+    self:SetWide(60)
+
     local cir = DynUI.Circles.New(CIRCLE_FILLED, 10, self.Button:GetWide() * .5, self.Button:GetTall() * .5)
     cir:SetDistance(1)
     
@@ -49,7 +51,7 @@ function PANEL:OnMousePressed( key )
 
         surface.PlaySound("dynui/switch_off.mp3")
     else
-        self.Button:MoveTo(self:GetWide() - self.Button:GetWide() - 3, 0, .4, 0, .5, function()
+        self.Button:MoveTo((self:GetWide() - self.Button:GetWide()) - 8, 0, .4, 0, .5, function()
             self.Toggling = false
         end)
 
@@ -61,12 +63,18 @@ function PANEL:OnMousePressed( key )
     self:ToggleLerpColor(self.Toggle)
 end
 
+function PANEL:OnMouseReleased(key)
+    if key == MOUSE_LEFT then
+        self:DoClick()
+    end
+end
+
 function PANEL:DoToggle(bool)
     if not bool then return self.Toggle end
 
     if type(bool) != "boolean" then error("Wrong type passed to DynSwitch:Toggle()") end
     self.Toggle = bool
-    self.Button:SetPos(self:GetWide() - self.Button:GetWide() - 3, 0)
+    self.Button:SetPos(self:GetWide() - self.Button:GetWide() - 8, 0)
 
     if bool then
         self.Color = DynUI.Switch.Enabled
