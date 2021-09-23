@@ -35,7 +35,6 @@ function PANEL:DoHeader()
         if self:GetY() < 0 then self:SetY(0) end
     end
 
-    self.ResetHeight = self:GetTall()
     self.MinHeight = self.Header:GetTall()
     
     local cir = DynUI.Circles.New(CIRCLE_FILLED, 8, 30 * .5, self.Header:GetTall() * .5)
@@ -85,6 +84,7 @@ end
 
 function PANEL:Minimize(b_Minimize)
     if b_Minimize then
+        self.ResetHeight = self:GetTall()
         self:SetTall(self.MinHeight)
         self:KillFocus()
         self:SetMouseInputEnabled(false)
